@@ -4,5 +4,7 @@ Um projeto que visa auxiliar no processo de criação de TCCs na Associação Ed
 
 ## Rodar o projeto
 
-# Abrir o prompt de comando.
-# Rodar o comando **npm run dev.
+Abrir o prompt de comando e rodar o comando.
+```
+npm run dev
+```
