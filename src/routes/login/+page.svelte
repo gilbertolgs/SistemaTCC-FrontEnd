@@ -29,15 +29,10 @@
                 </div>
             </div>
             <div>
-                <input class="bg-primary w-full py-2 rounded-md text-white font-bold cursor-pointer hover:bg-[#181196]" type="submit" value="Login" >
+                <input class="bg-primary w-full py-2 rounded-md text-white font-bold cursor-pointer bg-blue-500 hover:bg-[#181196]" type="submit" value="Login" >
             </div>
             <div>
-                <p class="text-center">Faça o login usando sua conta.</p>
-            </div>
-            <div class="flex place-content-center">
-                <button class="cursor-pointer hover:bg-[#eeeeee] rounded-xl">
-                    <img src="https://www.google.com/favicon.ico" alt="Google Logo" class="">
-                </button>
+                <a href="/cadastro" class="font-bold text-blue-600">Criar Conta</a>
             </div>
         </div>        
     </div>

@@ -1,5 +1,6 @@
 <script>
 	import Header from '../components/Header.svelte';
+	import logo from '../lib/images/logoVazia.png'
 	import './styles.css';
 </script>
 
@@ -10,8 +11,8 @@
 		<slot />
 	</main>
 
-	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+	<footer class="bg-white">
+		<img class="h-[40px] w-auto" src="{logo}" alt="">
 	</footer>
 </div>
 
