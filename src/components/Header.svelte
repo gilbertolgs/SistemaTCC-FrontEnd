@@ -9,6 +9,10 @@
 		{
 			link: '/projetos-pessoais',
 			nome: 'Seus Projetos'
+		},
+		{
+			link: '/bancas',
+			nome: 'Bancas'
 		}
     ]
 
@@ -28,9 +32,12 @@
 		
 	]
 
-	let sideMenuActive = 'hidden';
+	// let sideMenuActive = 'hidden';
+	let sideMenuActive = 'decreaseWidth';
 	function openMenu(){
-		sideMenuActive = sideMenuActive == 'hidden' ? 'flex' : 'hidden'
+		// sideMenuActive = sideMenuActive == 'hidden' ? 'flex' : 'hidden'
+		sideMenuActive = sideMenuActive == 'decreaseWidth' ? 'increaseWidth' : 'decreaseWidth';
+		console.log(sideMenuActive);
 	}
 </script>
 <header class="bg-white">
@@ -52,9 +59,9 @@
 	  </div>
 	</nav>
 	<!-- Mobile menu, show/hide based on menu open state. -->
-	<div class="{sideMenuActive}" role="dialog" aria-modal="true">
+	<div class="lg:flex" role="dialog" aria-modal="true">
 	  <!-- Background backdrop, show/hide based on slide-over state. -->
-	  <div class="fixed inset-y-0 left-0 z-10 w-full overflow-y-hidden bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+	  <div class="fixed inset-y-0 left-0 z-10 overflow-y-hidden bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 {sideMenuActive}">
 		<div class="flex items-center justify-between">
 		  <a href="/" class="-m-1.5 p-1.5">
 			<span class="sr-only">Your Company</span>
@@ -79,3 +86,32 @@
 	  </div>
 	</div>
   </header>
+
+  <style>
+	.increaseWidth {
+	    animation: increaseWidth 1s forwards;
+	}
+
+	.decreaseWidth{
+	    animation: decreaseWidth 1s forwards linear;
+		
+	}
+
+	@keyframes increaseWidth {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
+	}
+	@keyframes decreaseWidth {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0%;
+    }
+}
+	
+  </style>
