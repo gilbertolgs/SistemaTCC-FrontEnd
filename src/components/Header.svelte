@@ -4,15 +4,18 @@
 	let diretorios = [
         {
             link: '/biblioteca',
-            nome: 'Biblioteca de Projetos'
+            nome: 'Biblioteca de Projetos',
+			icon: 'library_books'
         },
 		{
 			link: '/projetos-pessoais',
-			nome: 'Seus Projetos'
+			nome: 'Seus Projetos',
+			icon: 'menu_book'
 		},
 		{
 			link: '/bancas',
-			nome: 'Bancas'
+			nome: 'Bancas',
+			icon: 'groups'
 		}
     ]
 
@@ -34,26 +37,19 @@
 
 	// let sideMenuActive = 'hidden';
 	let sideMenuActive = 'decreaseWidth';
+	let textoVisivel = 'hidden';
 	function openMenu(){
-		// sideMenuActive = sideMenuActive == 'hidden' ? 'flex' : 'hidden'
+		textoVisivel = textoVisivel == 'hidden' ? '' : 'hidden'
 		sideMenuActive = sideMenuActive == 'decreaseWidth' ? 'increaseWidth' : 'decreaseWidth';
-		console.log(sideMenuActive);
+		console.log(sideMenuActive
+		);
 	}
 </script>
 <header class="bg-white">
 	<nav class="mx-auto flex items-center justify-between p-3 lg:px-6" aria-label="Global">
 	  <div class="flex lg:flex-1">
-		<a href="/" class="-m-1.5 p-1.5">
-		  <img class="h-[50px] w-auto" src="{logo}" alt="">
-		</a>
-		<button type="button" class="ml-1 -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" on:click={openMenu}>
-			<span class="sr-only">Abrir Menu</span>
-			<svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-				<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-			</svg>
-		</button>
+
 	  </div>
-		  
 	  <div class="lg:justify-end">
 		<a href="/login" class="text-sm font-semibold leading-6 text-gray-900">Log in</a>
 	  </div>
@@ -78,7 +74,14 @@
 		  <div class="-my-6 divide-y divide-gray-500/10">
 			{#each diretorios as diretorio}
 				<div class="space-y-2 py-6">
-					<a href="{diretorio.link}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{diretorio.nome}</a>
+					<a href="{diretorio.link}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+						<span class="material-symbols-outlined">
+							{diretorio.icon}
+						</span>
+						<span class="{textoVisivel}">
+							{diretorio.nome}
+						</span>
+					</a>
 				</div>
 			{/each}
 		  </div>
@@ -93,7 +96,7 @@
 	}
 
 	.decreaseWidth{
-	    animation: decreaseWidth 1s forwards linear;
+	    animation: decreaseWidth 200ms forwards;
 		
 	}
 

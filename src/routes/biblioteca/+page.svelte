@@ -16,6 +16,11 @@
             nome: "Projeto 3",
             descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             id: 3
+        },
+        {
+            nome: "Projeto 4",
+            descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            id: 4
         }
     ]
 
@@ -28,27 +33,31 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<div class="flex items-center">
-    <div class="shadow-sm my-8 relative rounded-xl overflow-auto bg-slate-50">
-        <table class="border-collapse table-auto w-full text-sm my-3">
-            <thead class="">
-                <tr>
-                    <th>Nome</th>
-                    <th>Descricao</th>
-                </tr>
-            </thead>
-            <tbody class="bg-white dark:bg-slate-800">
+<div class="flex items-center flex-col">
+    <h1>
+        Biblioteca de Trabalhos de Conclusão de Curso
+    </h1>
+    <div class="shadow-sm my-8 relative rounded-xl overflow-auto bg-slate-50 flex justify-between flex-wrap">
                 {#each projetos as projeto}
-                <tr class="hover:bg-slate-100 dark:hover:bg-slate-700 cursor-pointer" on:click={() => {openProject(projeto.id)} }>
-                        <th class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
-                            <p>{projeto.nome}</p>
-                        </th>
-                        <th class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
+                <div class="group relative rounded-lg overflow-hidden bg-white  hover:shadow-2xl m-4 w-[30%]">
+                      <div class="h-40">
+                        <img
+                          src='https://lp-cms-production.imgix.net/2019-06/554369495_full.jpg'
+                          alt='City'
+                          class="h-40 w-full object-cover object-center "
+                        />
+                      </div>
+                      <div class="h-1/2 p-4 ">
+                        <h3 class="mb-2 text-base font-semibold text-blue-800">
+                          <a href='/' class="hover:underline">
+                            {projeto.nome}
+                          </a>
+                        </h3>                        
+                        <div class='flex flex-row justify-between text-xs mt-2'> 
                             <p>{projeto.descricao}</p>
-                        </th>
-                    </tr>
-                {/each}
-            </tbody>
-        </table>
+                        </div>
+                      </div>
+                </div>
+            {/each}
     </div>
 </div>
