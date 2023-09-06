@@ -1,5 +1,6 @@
 <script lang="ts">
 	import logo from '$lib/images/logoVazia.png';
+	import { browser } from '$app/environment';
 
 	let diretorios = [
         {
@@ -35,86 +36,92 @@
 		
 	]
 
-	// let sideMenuActive = 'hidden';
-	let sideMenuActive = 'decreaseWidth';
-	let textoVisivel = 'hidden';
+	let sideMenuActive = 'w-11';
+	let textoVisivel = 'scale-0 fixed';
+	let colorTheme = 'light';
+	let rotateIcon = '';
 	function openMenu(){
-		textoVisivel = textoVisivel == 'hidden' ? '' : 'hidden'
-		sideMenuActive = sideMenuActive == 'decreaseWidth' ? 'increaseWidth' : 'decreaseWidth';
-		console.log(sideMenuActive
-		);
+		// sideMenuActive = sideMenuActive == 'decreaseWidth' ? 'increaseWidth' : 'decreaseWidth';
+		sideMenuActive = sideMenuActive == 'w-11' ? 'w-full' : 'w-11';
+		textoVisivel = textoVisivel == 'scale-0 fixed' ? 'scale-100' : 'scale-0 fixed';
 	}
+
+	function changeTheme(){
+		colorTheme = colorTheme == 'light' ? 'dark' : 'light';
+		rotateIcon = rotateIcon == '' ? 'animate-spin' : '';
+	}
+
 </script>
-<header class="bg-white">
-	<nav class="mx-auto flex items-center justify-between p-3 lg:px-6" aria-label="Global">
+
+<header class="bg-white" id="navBar">
+	<nav class="mx-auto flex items-center justify-between p-3 lg:px-6" >
 	  <div class="flex lg:flex-1">
 
 	  </div>
-	  <div class="lg:justify-end">
+	  <div class="justify-end">
 		<a href="/login" class="text-sm font-semibold leading-6 text-gray-900">Log in</a>
 	  </div>
 	</nav>
 	<!-- Mobile menu, show/hide based on menu open state. -->
 	<div class="lg:flex" role="dialog" aria-modal="true">
 	  <!-- Background backdrop, show/hide based on slide-over state. -->
-	  <div class="fixed inset-y-0 left-0 z-10 overflow-y-hidden bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 {sideMenuActive}">
-		<div class="flex items-center justify-between">
+	  <div class="fixed inset-y-0 left-0 z-10 overflow-x-hidden bg-white p-6 pl-2 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 {sideMenuActive} transition-all delay-70 ease-linear">
+		<div class="flex items-center justify-between mb-3">
 		  <a href="/" class="-m-1.5 p-1.5">
 			<span class="sr-only">Your Company</span>
 			<img class="h-[50px] w-auto" src="{logo}" alt="">
 		  </a>
 		  <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700" on:click={openMenu}>
-			<span class="sr-only">Abrir Menu</span>
-			<svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-				<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-			</svg>
+			<span class="material-symbols-outlined">
+				menu
+			</span>
 		  </button>
 		</div>
-		<div class="mt-6 flow-root">
-		  <div class="-my-6 divide-y divide-gray-500/10">
-			{#each diretorios as diretorio}
-				<div class="space-y-2 py-6">
-					<a href="{diretorio.link}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-						<span class="material-symbols-outlined">
+		<hr>
+		<div class="h-[80%] absolute w-full divide-y divide-gray-500/10 flex flex-col">
+			<ul class="flex-1">
+				{#each diretorios as diretorio}
+				<li class="space-y-2 py-3 w-full m-1">
+					<a href="{diretorio.link}" class="-mx-3 rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 flex items-center">
+						<span class="material-symbols-outlined mr-3">
 							{diretorio.icon}
 						</span>
-						<span class="{textoVisivel}">
+						<span class="{textoVisivel} transition-all delay-50">
 							{diretorio.nome}
 						</span>
 					</a>
-				</div>
-			{/each}
-		  </div>
+				</li>
+				{/each}
+			</ul>
+			<ul class="justify-end">
+				<li class="space-y-2 py-3 w-full m-1">
+					<button class="-mx-3 rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 flex items-center w-full hover:underline" on:click={changeTheme}>
+						{#if colorTheme=='dark'}
+						<span class="material-symbols-outlined mr-3 text-blue-500 transition-all duration-150 {rotateIcon}">
+							dark_mode
+						</span>
+						{:else}
+						<span class="material-symbols-outlined mr-3 text-yellow-500 transition-all duration-150 {rotateIcon}">
+							light_mode
+						</span>
+						{/if}
+						<span class="{textoVisivel} transition-all delay-50">
+							Mudar Tema
+						</span>
+					</button>
+				</li>
+				<li class="space-y-2 py-3 w-full m-1">
+					<a href="/login" class="-mx-3 rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 flex items-center">
+						<span class="material-symbols-outlined mr-3 text-red-500">
+							logout
+						</span>
+						<span class="{textoVisivel} transition-all delay-50">
+							Sair
+						</span>
+					</a>
+				</li>
+			</ul>
 		</div>
 	  </div>
 	</div>
-  </header>
-
-  <style>
-	.increaseWidth {
-	    animation: increaseWidth 1s forwards;
-	}
-
-	.decreaseWidth{
-	    animation: decreaseWidth 200ms forwards;
-		
-	}
-
-	@keyframes increaseWidth {
-    from {
-        width: 0%;
-    }
-    to {
-        width: 100%;
-    }
-	}
-	@keyframes decreaseWidth {
-    from {
-        width: 100%;
-    }
-    to {
-        width: 0%;
-    }
-}
-	
-  </style>
+</header>

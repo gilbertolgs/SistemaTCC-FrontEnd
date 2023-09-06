@@ -23,37 +23,23 @@
             id: 4
         }
     ]
+
+    function openProject(id: number){
+        goto('/projeto');
+    }
 </script>
 <svelte:head>
-	<title>SGTCC - Projetos Publicados</title>
+	<title>SGTCC - Bancas</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
 <div class="flex items-center flex-col">
     <h1>
-        Biblioteca de Trabalhos de Conclusão de Curso
+        Bancas dos Cursos
     </h1>
     <div class="shadow-sm my-8 relative rounded-xl overflow-auto bg-slate-50 flex justify-between flex-wrap">
-                {#each projetos as projeto}
-                <div class="group relative rounded-lg overflow-hidden bg-white  hover:shadow-2xl m-4 w-[30%]">
-                      <div class="h-40">
-                        <img
-                          src='https://lp-cms-production.imgix.net/2019-06/554369495_full.jpg'
-                          alt='City'
-                          class="h-40 w-full object-cover object-center "
-                        />
-                      </div>
-                      <div class="h-1/2 p-4 ">
-                        <h3 class="mb-2 text-base font-semibold text-blue-800">
-                          <a href='/projeto' class="hover:underline">
-                            {projeto.nome}
-                          </a>
-                        </h3>                        
-                        <div class='flex flex-row justify-between text-xs mt-2'> 
-                            <p>{projeto.descricao}</p>
-                        </div>
-                      </div>
-                </div>
-            {/each}
+        <div>
+            
+        </div>
     </div>
 </div>
