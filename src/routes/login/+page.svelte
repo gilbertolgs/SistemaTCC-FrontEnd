@@ -1,8 +1,9 @@
 <script>
+    import { PUBLIC_PAGENAME } from '$env/static/public';
     import logo from '$lib/images/logoVazia.png';
 </script>
 <svelte:head>
-	<title>SGTCC - Login</title>
+	<title>{PUBLIC_PAGENAME} - Login</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 

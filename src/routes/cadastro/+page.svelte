@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { PUBLIC_PAGENAME } from "$env/static/public";
+
     let cursos = [
         {
             id: 1,
@@ -12,7 +14,7 @@
 </script>
 
 <svelte:head>
-	<title>SGTCC - Cadastro</title>
+	<title>{PUBLIC_PAGENAME} - Cadastro</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 

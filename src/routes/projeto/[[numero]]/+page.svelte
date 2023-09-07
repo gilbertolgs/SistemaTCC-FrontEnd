@@ -4,10 +4,14 @@
         nome: 'Projeto 1',
         descricao: 'Lorem ipsum'
     }
+    export let data;
+    let numeroProduto = data.params.numero
+    projeto.nome = 'Projeto ' + numeroProduto
+    
 </script>
 
 <svelte:head>
-	<title>SGTCC - {projeto.nome}</title>
+	<title>SGTCC - {projeto.nome} </title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 

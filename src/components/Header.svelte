@@ -55,18 +55,16 @@
 
 <header class="bg-white" id="navBar">
 	<nav class="mx-auto flex items-center justify-between p-3 lg:px-6" >
-	  <div class="flex lg:flex-1">
+	  <div class="flex lg:flex-1 h-11">
 
 	  </div>
 	  <div class="justify-end">
 		<a href="/login" class="text-sm font-semibold leading-6 text-gray-900">Log in</a>
 	  </div>
 	</nav>
-	<!-- Mobile menu, show/hide based on menu open state. -->
 	<div class="lg:flex" role="dialog" aria-modal="true">
-	  <!-- Background backdrop, show/hide based on slide-over state. -->
-	  <div class="fixed inset-y-0 left-0 z-10 overflow-x-hidden bg-white p-6 pl-2 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 {sideMenuActive} transition-all delay-70 ease-linear">
-		<div class="flex items-center justify-between mb-3">
+	  <div class="fixed inset-y-0 left-0 z-10 overflow-x-hidden bg-white p-6 pt-2 pl-2 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 {sideMenuActive} transition-all delay-70 ease-linear">
+		<div class="flex items-center justify-between mb-2">
 		  <a href="/" class="-m-1.5 p-1.5">
 			<span class="sr-only">Your Company</span>
 			<img class="h-[50px] w-auto" src="{logo}" alt="">
@@ -81,9 +79,9 @@
 		<div class="h-[80%] absolute w-full divide-y divide-gray-500/10 flex flex-col">
 			<ul class="flex-1">
 				{#each diretorios as diretorio}
-				<li class="space-y-2 py-3 w-full m-1">
-					<a href="{diretorio.link}" class="-mx-3 rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 flex items-center">
-						<span class="material-symbols-outlined mr-3">
+				<li class="space-y-2 py-3 w-full m-1 group">
+					<a href="{diretorio.link}" class="-mx-3 rounded-lg px-3 py-2 text-base hover:shadow-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50 flex items-center">
+						<span class="material-symbols-outlined mr-3 group-hover:scale-110">
 							{diretorio.icon}
 						</span>
 						<span class="{textoVisivel} transition-all delay-50">
@@ -94,14 +92,14 @@
 				{/each}
 			</ul>
 			<ul class="justify-end">
-				<li class="space-y-2 py-3 w-full m-1">
-					<button class="-mx-3 rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 flex items-center w-full hover:underline" on:click={changeTheme}>
+				<li class="space-y-2 py-3 w-full m-1 group">
+					<button class="-mx-3 rounded-lg px-3 py-2 text-base hover:shadow-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50 flex items-center w-full hover:underline" on:click={changeTheme}>
 						{#if colorTheme=='dark'}
-						<span class="material-symbols-outlined mr-3 text-blue-500 transition-all duration-150 {rotateIcon}">
+						<span class="material-symbols-outlined mr-3 text-blue-500 transition-all duration-150 group-hover:scale-110">
 							dark_mode
 						</span>
 						{:else}
-						<span class="material-symbols-outlined mr-3 text-yellow-500 transition-all duration-150 {rotateIcon}">
+						<span class="material-symbols-outlined mr-3 text-yellow-500 transition-all duration-150 group-hover:scale-110">
 							light_mode
 						</span>
 						{/if}
@@ -110,9 +108,9 @@
 						</span>
 					</button>
 				</li>
-				<li class="space-y-2 py-3 w-full m-1">
-					<a href="/login" class="-mx-3 rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 flex items-center">
-						<span class="material-symbols-outlined mr-3 text-red-500">
+				<li class="space-y-2 py-3 w-full m-1 group">
+					<a href="/login" class="-mx-3 rounded-lg px-3 py-2 text-base hover:shadow-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50 flex items-center">
+						<span class="material-symbols-outlined mr-3 text-red-500 group-hover:scale-110">
 							logout
 						</span>
 						<span class="{textoVisivel} transition-all delay-50">

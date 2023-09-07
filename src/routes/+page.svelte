@@ -2,10 +2,11 @@
 	import Counter from '../components/Counter.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
+    import { PUBLIC_PAGENAME } from '$env/static/public';
 </script>
 
 <svelte:head>
-	<title>SGTCC - Página Inicial</title>
+	<title>{PUBLIC_PAGENAME} - Página Inicial</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 

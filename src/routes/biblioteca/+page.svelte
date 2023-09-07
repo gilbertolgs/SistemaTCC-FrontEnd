@@ -1,6 +1,7 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
     import logo from '$lib/images/logoVazia.png';
+    import { PUBLIC_PAGENAME } from '$env/static/public';
     let projetos = [
         {
             nome: "Projeto 1",
@@ -25,7 +26,7 @@
     ]
 </script>
 <svelte:head>
-	<title>SGTCC - Projetos Publicados</title>
+	<title>{PUBLIC_PAGENAME} - Projetos Publicados</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
@@ -35,17 +36,17 @@
     </h1>
     <div class="shadow-sm my-8 relative rounded-xl overflow-auto bg-slate-50 flex justify-between flex-wrap">
                 {#each projetos as projeto}
-                <div class="group relative rounded-lg overflow-hidden bg-white  hover:shadow-2xl m-4 w-[30%]">
-                      <div class="h-40">
+                <div class="group relative rounded-lg overflow-hidden bg-white  hover:shadow-2xl hover:scale-105 transition-all m-4 w-[30%] border border-slate-500">
+                      <div class="h-40 bg-blue-500">
                         <img
-                          src='https://lp-cms-production.imgix.net/2019-06/554369495_full.jpg'
+                          src=''
                           alt='City'
-                          class="h-40 w-full object-cover object-center "
+                          class="h-40 w-full object-cover object-center hidden"
                         />
                       </div>
                       <div class="h-1/2 p-4 ">
                         <h3 class="mb-2 text-base font-semibold text-blue-800">
-                          <a href='/projeto' class="hover:underline">
+                          <a href='/projeto/{projeto.id}' class="hover:underline">
                             {projeto.nome}
                           </a>
                         </h3>                        
