@@ -11,7 +11,7 @@
 		<slot />
 	</main>
 
-	<footer class="bg-white">
+	<footer class="bg-bg-primary">
 		<img class="h-[40px] w-auto" src="{logo}" alt="">
 	</footer>
 </div>
@@ -28,6 +28,7 @@
 		display: flex;
 		flex-direction: column;
 		padding: 1rem;
+		padding-left: 50px;
 		width: 100%;
 		max-width: 64rem;
 		margin: 0 auto;
@@ -42,9 +43,9 @@
 		padding: 12px;
 	}
 
-	@media (min-width: 480px) {
-		footer {
-			padding: 12px 0;
+	@media (min-width: 1024px) {
+		main {
+			padding-left: 0px;
 		}
 	}
 </style>

@@ -1,6 +1,5 @@
 <script lang="ts">
-    import { goto } from '$app/navigation';
-    import logo from '$lib/images/logoVazia.png';
+    import Card from '$components/Card.svelte';
     import { PUBLIC_PAGENAME } from '$env/static/public';
     let projetos = [
         {
@@ -34,27 +33,12 @@
     <h1>
         Biblioteca de Trabalhos de Conclusão de Curso
     </h1>
-    <div class="shadow-sm my-8 relative rounded-xl overflow-auto bg-slate-50 flex justify-between flex-wrap">
-                {#each projetos as projeto}
-                <div class="group relative rounded-lg overflow-hidden bg-white  hover:shadow-2xl hover:scale-105 transition-all m-4 w-[30%] border border-slate-500">
-                      <div class="h-40 bg-blue-500">
-                        <img
-                          src=''
-                          alt='City'
-                          class="h-40 w-full object-cover object-center hidden"
-                        />
-                      </div>
-                      <div class="h-1/2 p-4 ">
-                        <h3 class="mb-2 text-base font-semibold text-blue-800">
-                          <a href='/projeto/{projeto.id}' class="hover:underline">
-                            {projeto.nome}
-                          </a>
-                        </h3>                        
-                        <div class='flex flex-row justify-between text-xs mt-2'> 
-                            <p>{projeto.descricao}</p>
-                        </div>
-                      </div>
-                </div>
-            {/each}
+    <div class="cardHolderComponent">
+          {#each projetos as projeto}
+          <Card
+          item={projeto}
+          tipo="projeto"
+          />
+          {/each}
     </div>
 </div>
