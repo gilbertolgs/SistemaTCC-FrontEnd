@@ -17,7 +17,7 @@
     </div>
     <div class="h-1/2 p-4 ">
       <h3 class="mb-2 text-base font-semibold text-content-primary">
-        <a href='/{tipo}/{item.id}' class="hover:underline">
+        <a href='/{tipo}?id={item.id}' class="hover:underline">
           {item.nome}
         </a>
       </h3>                        

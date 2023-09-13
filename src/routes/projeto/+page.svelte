@@ -1,5 +1,18 @@
 <script lang="ts">
+    import { onMount } from 'svelte';
+
+    let queryString = ''; // Initialize a variable to store the query string
     
+    // Function to update the query string
+    function updateQueryString() {
+      const searchParams = new URLSearchParams(window.location.search);
+      queryString += searchParams.toString().split('=')[1];
+      projeto.nome = 'Projeto ' + queryString
+    }
+    
+    // Call the updateQueryString function when the component is mounted
+    onMount(updateQueryString);
+
     let projeto = {
         id: 1,
         nome: 'Projeto 1',
@@ -28,9 +41,6 @@
             }
         }
     ]
-    export let data;
-    let numeroProduto = data.params.numero
-    projeto.nome = 'Projeto ' + numeroProduto
     
 </script>
 
@@ -57,7 +67,7 @@
                 <ul class="mt-5">
                     {#each comentarios as comentario}
                     <li class="flex flex-col mb-3 border border-bg-secondary p-3 rounded-lg">
-                        <a href="usuario/{comentario.usuario.id}" class="text-content-primary underline hover:brightness-90">
+                        <a href="usuario?id={comentario.usuario.id}" class="text-content-primary underline hover:brightness-90">
                             {comentario.usuario.nome}
                         </a>
                         {comentario.texto}

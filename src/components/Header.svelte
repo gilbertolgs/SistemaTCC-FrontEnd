@@ -2,6 +2,7 @@
 	import logo from '$lib/images/logoVazia.png';
 	import DropDown from './DropDown.svelte';
 
+
 	let login = {
 		id: 1,
 		nome: 'Gilberto Luis',
@@ -11,7 +12,7 @@
 
 	let diretorios = [
         {
-            link: '/biblioteca',
+            link: '/',
             nome: 'Biblioteca de Projetos',
 			icon: 'library_books'
         },

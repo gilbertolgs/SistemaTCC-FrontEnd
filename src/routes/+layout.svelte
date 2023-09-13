@@ -1,14 +1,28 @@
 <script>
+	import Router, {location, link} from 'svelte-spa-router';
+
+	import Biblioteca from './biblioteca/+page.svelte';
+	import ProjetosPessoais from './projetos-pessoais/+page.svelte';
+	import Bancas from './bancas/+page.svelte';
+	import Convites from './convites/+page.svelte';
+
 	import Header from '../components/Header.svelte';
 	import logo from '../lib/images/logoVazia.png'
 	import './styles.css';
+
+	const routes={
+			'/': Biblioteca,
+			'/#/projetospessoais': ProjetosPessoais,
+			'/#/bancas': Bancas,
+			'/#/convites': Convites,
+	};
 </script>
 
 <div class="app">
 	<Header />
 
 	<main>
-		<slot />
+		<slot/>
 	</main>
 
 	<footer class="bg-bg-primary">
