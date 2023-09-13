@@ -1,4 +1,9 @@
 <script lang="ts">
+  import {onMount} from 'svelte';
+  function doNothing(){
+
+  }
+  onMount(doNothing);
     export let dados: [
         {
 			vitae : "dolorem",

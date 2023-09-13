@@ -1,4 +1,9 @@
 <script lang="ts">
+  import {onMount} from 'svelte';
+  function doNothing(){
+
+  }
+  onMount(doNothing);
     let open = 'h-0';
     export function openDropDown() {
         open = 'h-100 py-5';

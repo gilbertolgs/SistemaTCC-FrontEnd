@@ -1,4 +1,9 @@
 <script lang="ts">
+  import {onMount} from 'svelte';
+  function doNothing(){
+
+  }
+  onMount(doNothing);
 	import logo from '$lib/images/logoVazia.png';
 	import DropDown from './DropDown.svelte';
 
@@ -12,7 +17,7 @@
 
 	let diretorios = [
         {
-            link: '/',
+            link: '/biblioteca',
             nome: 'Biblioteca de Projetos',
 			icon: 'library_books'
         },

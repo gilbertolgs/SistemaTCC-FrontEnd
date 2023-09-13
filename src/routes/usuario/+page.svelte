@@ -1,4 +1,9 @@
 <script lang="ts">
+  import {onMount} from 'svelte';
+  function doNothing(){
+
+  }
+  onMount(doNothing);
     import { onMount } from 'svelte';
 
     let queryString = ''; // Initialize a variable to store the query string

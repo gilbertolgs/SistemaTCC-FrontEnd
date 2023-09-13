@@ -1,4 +1,9 @@
 <script lang="ts">
+  import {onMount} from 'svelte';
+  function doNothing(){
+
+  }
+  onMount(doNothing);
 	import Counter from '../components/Counter.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
