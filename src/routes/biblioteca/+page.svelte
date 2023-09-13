@@ -1,7 +1,8 @@
 <script lang="ts">
 
     import Card from '$components/Card.svelte';
-    import { PUBLIC_PAGENAME } from '$env/static/public';
+    import { pageName } from '../stores';
+    
     let projetos = [
         {
             nome: "Projeto 1",
@@ -26,7 +27,7 @@
     ]
 </script>
 <svelte:head>
-	<title>{PUBLIC_PAGENAME} - Projetos Publicados</title>
+	<title>{pageName} - Projetos Publicados</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 

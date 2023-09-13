@@ -1,17 +1,18 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import Card from '$components/Card.svelte';
+    import { pageName } from '../stores';
 
-    let queryString = ''; // Initialize a variable to store the query string
+    let queryString = ''; 
     
-    // Function to update the query string
+    
     function updateQueryString() {
       const searchParams = new URLSearchParams(window.location.search);
       queryString += searchParams.toString().split('=')[1];
       login.nome = login.nome + ' ID: ' + queryString;
     }
     
-    // Call the updateQueryString function when the component is mounted
+    
     onMount(updateQueryString);
 
 	let login = {
@@ -46,7 +47,7 @@
 </script>
 
 <svelte:head>
-	<title>SGTCC - {login.nome} </title>
+	<title>{pageName} - {login.nome} </title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 

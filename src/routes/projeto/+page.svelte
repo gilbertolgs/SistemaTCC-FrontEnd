@@ -1,16 +1,17 @@
 <script lang="ts">
     import { onMount } from 'svelte';
+    import { pageName } from '../stores';
 
-    let queryString = ''; // Initialize a variable to store the query string
+    let queryString = ''; 
+
     
-    // Function to update the query string
     function updateQueryString() {
       const searchParams = new URLSearchParams(window.location.search);
       queryString += searchParams.toString().split('=')[1];
       projeto.nome = 'Projeto ' + queryString
     }
+
     
-    // Call the updateQueryString function when the component is mounted
     onMount(updateQueryString);
 
     let projeto = {
@@ -45,7 +46,7 @@
 </script>
 
 <svelte:head>
-	<title>SGTCC - {projeto.nome} </title>
+	<title>{pageName} - {projeto.nome} </title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 

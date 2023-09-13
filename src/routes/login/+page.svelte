@@ -1,10 +1,10 @@
 <script>
-    import { PUBLIC_PAGENAME } from '$env/static/public';
+    import { pageName } from '../stores';
     
     import logo from '$lib/images/logoVazia.png';
 </script>
 <svelte:head>
-	<title>{PUBLIC_PAGENAME} - Login</title>
+	<title>{pageName} - Login</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 

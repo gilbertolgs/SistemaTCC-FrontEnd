@@ -1,6 +1,6 @@
 <script lang="ts">
 
-    export let item = {
+    export let item: {
         nome: String,
         descricao: String,
         id: Number

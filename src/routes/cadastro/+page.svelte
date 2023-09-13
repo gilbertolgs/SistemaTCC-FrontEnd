@@ -1,6 +1,6 @@
 <script lang="ts">
 
-    import { PUBLIC_PAGENAME } from "$env/static/public";
+    import { pageName } from '../stores';
 
     let cursos = [
         {
@@ -15,7 +15,7 @@
 </script>
 
 <svelte:head>
-	<title>{PUBLIC_PAGENAME} - Cadastro</title>
+	<title>{pageName} - Cadastro</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
