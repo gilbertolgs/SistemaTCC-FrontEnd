@@ -1,9 +1,5 @@
 <script lang="ts">
-  import {onMount} from 'svelte';
-  function doNothing(){
 
-  }
-  onMount(doNothing);
 	import logo from '$lib/images/logoVazia.png';
 	import DropDown from './DropDown.svelte';
 
@@ -17,22 +13,22 @@
 
 	let diretorios = [
         {
-            link: '/biblioteca',
+            link: 'biblioteca',
             nome: 'Biblioteca de Projetos',
 			icon: 'library_books'
         },
 		{
-			link: '/projetos-pessoais',
+			link: 'projetos-pessoais',
 			nome: 'Seus Projetos',
 			icon: 'menu_book'
 		},
 		{
-			link: '/bancas',
+			link: 'bancas',
 			nome: 'Bancas',
 			icon: 'groups'
 		},
 		{
-			link: '/convites',
+			link: 'convites',
 			nome: 'Convites',
 			icon: 'email'
 		}
@@ -40,26 +36,26 @@
 
 	let diretoriosAdmin = [
 		{
-			link: '/cadastrar-usuario',
+			link: 'cadastrar-usuario',
 			nome: 'Cadastrar Usuário'
 		},
 		{
-			link: '/cadastrar-curso',
+			link: 'cadastrar-curso',
 			nome: 'Cadastrar Curso'
 		},
 		{
-			link: '/projetos-pendentes',
+			link: 'projetos-pendentes',
 			nome: 'Projetos Pendentes'
 		},
 		
 	];
 	let notificacoes = [
 		{
-			link: '/convites',
+			link: 'convites',
 			nome: 'Convite para Projeto 1'
 		},
 		{
-			link: '/convites',
+			link: 'convites',
 			nome: 'Convite para Projeto 2'
 		}
 	];
@@ -122,14 +118,14 @@
 			</button>
 		</div>
 		{:else}
-		<a href="/login" class="text-sm font-semibold leading-6">Log in</a>
+		<a href="login" class="text-sm font-semibold leading-6">Log in</a>
 		{/if}
 	  </div>
 	</nav>
 	<div class="lg:flex" role="dialog" aria-modal="true">
 	  <div class="fixed inset-y-0 left-0 z-10 overflow-x-hidden bg-bg-primary p-6 pt-2 pl-2 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 {sideMenuActive} transition-all delay-70 ease-linear">
 		<div class="flex items-center justify-between mb-2">
-		  <a href="/" class="-m-1.5 p-1.5">
+		  <a href="biblioteca" class="-m-1.5 p-1.5">
 			<span class="sr-only">Your Company</span>
 			<img class="h-[50px] w-auto" src="{logo}" alt="">
 		  </a>
@@ -174,7 +170,7 @@
 				</li>
 				{#if login}
 				<li class="space-y-2 py-3 w-full m-1 group">
-					<a href="/login" class="-mx-3 rounded-lg px-3 py-2 text-base hover:brightness-90 bg-bg-primary hover:shadow-2xl font-semibold leading-7 text-text-primary flex items-center">
+					<a href="login" class="-mx-3 rounded-lg px-3 py-2 text-base hover:brightness-90 bg-bg-primary hover:shadow-2xl font-semibold leading-7 text-text-primary flex items-center">
 						<span class="material-symbols-outlined mr-3 text-red-500 group-hover:scale-110">
 							logout
 						</span>

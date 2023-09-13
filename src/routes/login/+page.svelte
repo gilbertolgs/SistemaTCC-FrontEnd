@@ -34,7 +34,7 @@
                 <input class="w-full py-2 rounded-md text-white font-bold cursor-pointer bg-content-primary hover:brightness-90" type="submit" value="Login" >
             </div>
             <div>
-                <a href="/cadastro" class="font-bold text-content-primary">Criar Conta</a>
+                <a href="cadastro" class="font-bold text-content-primary">Criar Conta</a>
             </div>
         </div>        
     </div>

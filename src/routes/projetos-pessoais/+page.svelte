@@ -1,9 +1,5 @@
 <script lang="ts">
-  import {onMount} from 'svelte';
-  function doNothing(){
 
-  }
-  onMount(doNothing);
   import Card from '$components/Card.svelte';
   import { PUBLIC_PAGENAME } from '$env/static/public';
   let projetos = [
@@ -38,11 +34,11 @@
         Seus Projetos
     </h1>
     <div class="cardHolderComponent">
-                {#each projetos as projeto}
-                <Card
-                item={projeto}
-                tipo="projeto"
-                />
-            {/each}
+        {#each projetos as projeto}
+            <Card
+            item={projeto}
+            tipo="projeto"
+            />
+        {/each}
     </div>
 </div>

@@ -1,9 +1,5 @@
 <script lang="ts">
-  import {onMount} from 'svelte';
-  function doNothing(){
 
-  }
-  onMount(doNothing);
     import { PUBLIC_PAGENAME } from '$env/static/public';
     let bancas = [
         {

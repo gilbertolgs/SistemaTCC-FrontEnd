@@ -1,9 +1,5 @@
 <script lang="ts">
-  import {onMount} from 'svelte';
-  function doNothing(){
 
-  }
-  onMount(doNothing);
     import { PUBLIC_PAGENAME } from "$env/static/public";
 
     let cursos = [
@@ -54,7 +50,7 @@
                 <input class="w-full py-2 rounded-md text-white font-bold cursor-pointer bg-content-primary hover:brightness-90" type="submit" value="Cadastrar" >
             </div>
             <div>
-                <a href="/login" class="font-bold text-content-primary">Já possui uma Conta?</a>
+                <a href="login" class="font-bold text-content-primary">Já possui uma Conta?</a>
             </div>
         </div>        
     </div>
