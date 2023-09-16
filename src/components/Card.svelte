@@ -23,7 +23,7 @@
         </a>
       </h3>                        
       <div class='flex flex-row justify-between text-xs mt-2 text-text-secondary'> 
-          <p>{item.descricao}</p>
+          <p class="truncate">{item.descricao}</p>
       </div>
     </div>
 </div>

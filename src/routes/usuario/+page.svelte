@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import Card from '$components/Card.svelte';
-    import { pageName } from '../stores';
+    import { pageName, projetos } from '../stores';
 
     let queryString = ''; 
     
@@ -22,28 +22,10 @@
         papel: 'Aluno',
 		senha: '123'
 	}
-
-    let projetos = [
-      {
-          nome: "Projeto 1",
-          descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          id: 1,
-          estado: 0
-      },
-      {
-          nome: "Projeto 2",
-          descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          id: 2,
-          estado: 1
-      },
-      {
-          nome: "Projeto 3",
-          descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          id: 3,
-          estado: 2
-      }
-  ];
-    
+    let editandoPerfil = false;
+    function editarPerfil() {
+        editandoPerfil = !editandoPerfil;
+    }
 </script>
 
 <svelte:head>
@@ -55,11 +37,33 @@
     <div class="flex w-full items-center">
         <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="imagem de perfil" class="h-20 w-20 rounded-lg border border-text-primary m-3">
         <div class="flex flex-col text-text-secondary font-bold">
+            {#if editandoPerfil}
+            Nome de Usuario: <input type="text" placeholder="{login.nome}" class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary placeholder-text-tertiary">
+            E-mail: <input type="text" placeholder="{login.email}" class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary placeholder-text-tertiary">
+            Curso: <input type="text" placeholder="{login.papel}" class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary placeholder-text-tertiary">
+            Papel: <input type="text" placeholder="{login.papel}" class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary placeholder-text-tertiary">
+            {:else}
             Nome de Usuario: {login.nome} <br>
             E-mail: {login.email} <br>
             Curso: Sistemas de Informação <br>
             Papel: {login.papel} <br>
+            {/if}
         </div>
+        {#if editandoPerfil}
+        <button on:click={editarPerfil} class="ml-auto mb-auto hover:brightness-90 bg-bg-primary rounded-xl p-3 pb-2 flex justify-center bg-green-500">
+            <span class="material-symbols-outlined">
+                done
+            </span>
+            Salvar
+        </button>
+        {:else}
+        <button on:click={editarPerfil} class="ml-auto mb-auto hover:brightness-90 bg-bg-primary rounded-xl p-3 pb-2 flex justify-center">
+            <span class="material-symbols-outlined">
+                edit
+            </span>
+            Editar Perfil
+        </button>
+        {/if}
     </div>        
 </div>
 <div class="flex items-center h-max mx-auto flex-col w-full text-text-primary bg-bg-primary shadow-xl p-5 gap-2 text-sm rounded-xl divide-y divide-bg-secondary">

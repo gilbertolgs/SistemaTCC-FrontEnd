@@ -11,8 +11,9 @@
 
     export let dados: any;
     export let perfil: any;
+    export let pos: string;
 </script>
-<div class="absolute right-0 top-10 z-20 w-56 mt-3 overflow-hidden rounded-md shadow-xl bg-bg-primary text-text-primary {open} transition-all" >
+<div class="absolute {pos} z-20 w-56 overflow-hidden rounded-md shadow-xl bg-bg-primary text-text-primary {open} transition-all" >
     {#if perfil}
     <a href="usuario?id={perfil.id}" class="flex items-center p-3 -mt-2 text-sm  transition-colors duration-200 transform hover:brightness-90 bg-bg-primary">
         <img class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="avatar">
@@ -28,9 +29,15 @@
     {:else}
     {#each dados as dado}
     <hr class="border-gray-200 dark:border-gray-700 ">
-    <a href="{dado.link}" class="block px-4 py-3 text-sm  capitalize transition-colors duration-200 transform hover:brightness-90 bg-bg-primary">
+    {#if dado.link}
+    <a href="{dado.link}" class="block px-4 py-3 text-sm capitalize transition-colors duration-200 transform hover:brightness-90 bg-bg-primary">
         {dado.nome}
     </a>
+    {:else}
+    <button on:click="{dado.botao}" class="block px-4 py-3 text-sm capitalize transition-colors duration-200 transform hover:brightness-90 bg-bg-primary w-full">
+        {dado.nome}
+    </button>
+    {/if}
     {/each}
     {/if}
 </div>

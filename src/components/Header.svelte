@@ -22,11 +22,11 @@
 			nome: 'Seus Projetos',
 			icon: 'menu_book'
 		},
-		{
+		/*{
 			link: 'bancas',
 			nome: 'Bancas',
 			icon: 'groups'
-		},
+		},*/
 		{
 			link: 'convites',
 			nome: 'Convites',
@@ -36,19 +36,28 @@
 
 	let diretoriosAdmin = [
 		{
+            link: 'biblioteca',
+            nome: 'Biblioteca de Projetos',
+			icon: 'library_books'
+        },
+		{
 			link: 'cadastrar-usuario',
-			nome: 'Cadastrar Usuário'
+			nome: 'Cadastrar Usuário',
+			icon: 'person_add'
 		},
 		{
 			link: 'cadastrar-curso',
-			nome: 'Cadastrar Curso'
+			nome: 'Cadastrar Curso',
+			icon: 'post_add'
 		},
 		{
 			link: 'projetos-pendentes',
-			nome: 'Projetos Pendentes'
+			nome: 'Projetos Pendentes',
+			icon: 'assignment_late'
 		},
 		
 	];
+	diretorios = diretoriosAdmin;
 	let notificacoes = [
 		{
 			link: 'convites',
@@ -103,6 +112,7 @@
 			bind:closeDropDown={closeDropDownOne}
 			dados={notificacoes}
 			perfil={null}
+			pos={'right-0 top-10 mt-3'}
 			/>
 		</button>
 		{#if login}
@@ -114,6 +124,7 @@
 				bind:closeDropDown={closeDropDownTwo}
 				perfil={login}
 				dados={null}				
+				pos={'right-0 top-10 mt-3'}
 				/>
 			</button>
 		</div>
