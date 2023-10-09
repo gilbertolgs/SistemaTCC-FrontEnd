@@ -16,6 +16,8 @@ const config = {
 		}),
 		alias: {
 			$components: 'src/components',
+			$model: 'src/model',
+			$repository: 'src/repository',
 		}
 	}
 };

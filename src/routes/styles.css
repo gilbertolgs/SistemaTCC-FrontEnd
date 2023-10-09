@@ -85,10 +85,16 @@ body {
 		@apply bg-bg-primary odd:brightness-110 hover:brightness-90;
 	}
 	.cardHolderComponent {
-		@apply shadow-sm my-8 relative rounded-xl overflow-auto flex justify-between flex-wrap bg-bg-secondary lg:w-full w-[90%];
+		@apply grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] shadow-sm my-8 relative rounded-xl w-full bg-bg-secondary;
 	}
 	.tableHolderComponent {
 		@apply shadow-sm my-8 relative rounded-xl overflow-auto bg-bg-primary w-[90%];
+	}
+	.dropDownComponent {
+		@apply absolute h-0 z-20 w-56 overflow-hidden rounded-md shadow-xl bg-bg-primary text-text-primary transition-all;
+	}
+	.openDropDownComponent {
+		@apply py-5 overflow-visible;
 	}
 }
 

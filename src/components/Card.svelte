@@ -8,7 +8,7 @@
     export let tipo: string;
 </script>
 
-<div class="group relative rounded-lg overflow-hidden bg-bg-primary hover:shadow-2xl hover:scale-105 transition-all m-4 lg:w-[30%] border border-text-primary">
+<div class="group relative rounded-lg overflow-hidden bg-bg-primary hover:shadow-2xl hover:scale-105 transition-all m-4 border border-text-primary">
     <div class="h-40 bg-content-primary">
       <img
         src=''

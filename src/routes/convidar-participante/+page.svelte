@@ -1,5 +1,4 @@
 <script lang="ts">
-
     import { pageName } from '../stores';
 
     let pessoas = [

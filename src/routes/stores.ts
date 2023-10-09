@@ -1,7 +1,17 @@
-import { readable } from 'svelte/store';
+import User from '$model/User';
+import { readable, writable, type Writable } from 'svelte/store';
 
 export const pageName = "SGTCC";
-export const apiRoute = "";
+export const apiRoute = "https://localhost:7009/api/";
+
+export const connectionError = writable(200);
+
+export const storeConvites = writable([]);
+
+let user = new User(0, 0, "", "", "", "", 0, "");
+
+export const storeLogin: Writable<User | null> = writable(user);
+
 export const projetos = [
     {
         nome: "Transformação Digital na Saúde: Um Estudo de Impacto",
@@ -22,3 +32,38 @@ export const projetos = [
         id: 3
     }
 ];
+
+export const logins = [
+    {
+        id: 1,
+        nome: 'Administrador',
+        email: 'admin@aedb.br',
+        senha: '123',
+        curso: null,
+        papel: 'Administrador'
+    },
+    {
+        id: 2,
+        nome: 'Gilberto Luis',
+        email: 'gilberto.luis@aedb.br',
+        senha: '123',
+        curso: 'Sistema de Informação',
+        papel: 'Aluno'
+    },
+    {
+        id: 3,
+        nome: 'João Evangelista',
+        email: 'joao.evangelista@aedb.br',
+        senha: '123',
+        curso: 'Sistema de Informação',
+        papel: 'Aluno'
+    },
+    {
+        id: 4,
+        nome: 'João Marcos',
+        email: 'joao.marcos@aedb.br',
+        senha: '123',
+        curso: 'Sistema de Informação',
+        papel: 'Aluno'
+    }
+]

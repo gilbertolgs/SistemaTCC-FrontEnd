@@ -1,15 +1,38 @@
 <script lang="ts">
-
 	import logo from '$lib/images/logoVazia.png';
+    import type Convite from '$model/Covite';
+    import Api from '$repository/axiosInstance';
+    import { onMount } from 'svelte';
+    import { storeConvites, storeLogin } from '../routes/stores';
 	import DropDown from './DropDown.svelte';
+    import Cookie from '$model/Cookie';
+    import Usuario from '$model/Usuario';
 
+	let convites: Convite[] = [];
 
-	let login = {
-		id: 1,
-		nome: 'Gilberto Luis',
-		email: 'gilberto@aedb.br',
-		senha: '123'
-	}
+	storeConvites.subscribe((value) => {
+		convites = value;
+		notificacoes = [];
+		for (const convite of convites) {
+    		notificacoes.push({
+      			link: 'convites',
+      			nome: 'Convite para Projeto: ' + convite.projeto.nome
+    		});
+		}
+	});
+	
+	let login: any;
+
+	storeLogin.subscribe((value) => {
+		login = value;
+	});
+
+	$: notificacoes = [
+		{
+			link: 'convites',
+			nome: 'Convite para Projeto 1'
+		}
+	];
 
 	let diretorios = [
         {
@@ -46,8 +69,8 @@
 			icon: 'person_add'
 		},
 		{
-			link: 'cadastrar-curso',
-			nome: 'Cadastrar Curso',
+			link: 'gerenciar-curso',
+			nome: 'Gerenciar Curso',
 			icon: 'post_add'
 		},
 		{
@@ -57,17 +80,13 @@
 		},
 		
 	];
-	diretorios = diretoriosAdmin;
-	let notificacoes = [
-		{
-			link: 'convites',
-			nome: 'Convite para Projeto 1'
-		},
-		{
-			link: 'convites',
-			nome: 'Convite para Projeto 2'
+
+	diretorios.push(...diretoriosAdmin);
+	if(login){
+		if(login.papel == 'Administrador'){
+			diretorios = diretoriosAdmin;
 		}
-	];
+	}
 
 	let sideMenuActive = 'w-11';
 	let textoVisivel = 'scale-0 fixed';
@@ -83,12 +102,6 @@
 
 		document.documentElement.setAttribute("data-theme", colorTheme);
 	};
-
-	let openDropDownOne: () => void;
-	let closeDropDownOne: () => void;
-	let openDropDownTwo: () => void;
-	let closeDropDownTwo: () => void;
-	
 </script>
 
 <header class="bg-bg-primary" id="navBar">
@@ -97,7 +110,7 @@
 
 	  </div>
 	  <div class="justify-end text-text-primary flex items-center">
-		<button class="mr-4" on:mouseenter={openDropDownOne} on:mouseleave={closeDropDownOne}>
+		<button class="mr-4 group">
 			{#if notificacoes.length > 0}
 			<span class="relative flex h-3 w-3 left-4 top-2">
 				<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-content-primary brightness-110 opacity-75"></span>
@@ -107,25 +120,25 @@
 			<span class="material-symbols-outlined hover:cursor-pointer hover:scale-110">
 				notifications
 			</span>
-			<DropDown
-			bind:openDropDown={openDropDownOne}
-			bind:closeDropDown={closeDropDownOne}
-			dados={notificacoes}
-			perfil={null}
-			pos={'right-0 top-10 mt-3'}
-			/>
+			<div class="dropDownComponent group-hover:openDropDownComponent right-0 top-10 mt-3">
+				<DropDown
+				id={0}
+				dados={notificacoes}
+				perfil={null}
+				/>
+			</div>
 		</button>
 		{#if login}
 		<div>
-			<button on:mouseenter={openDropDownTwo} on:mouseleave={closeDropDownTwo} class="text-sm font-semibold leading-6 hover:underline hover:cursor-pointer">
-				{login.nome}	
-				<DropDown
-				bind:openDropDown={openDropDownTwo}
-				bind:closeDropDown={closeDropDownTwo}
-				perfil={login}
-				dados={null}				
-				pos={'right-0 top-10 mt-3'}
-				/>
+			<button class="group text-sm font-semibold leading-6 hover:underline hover:cursor-pointer">
+				{login.nome}
+				<div class="dropDownComponent group-hover:openDropDownComponent right-0 top-10 mt-3">
+					<DropDown
+					id={0}
+					perfil={login}
+					dados={null}
+					/>
+				</div>
 			</button>
 		</div>
 		{:else}
@@ -181,7 +194,7 @@
 				</li>
 				{#if login}
 				<li class="space-y-2 py-3 w-full m-1 group">
-					<a href="login" class="-mx-3 rounded-lg px-3 py-2 text-base hover:brightness-90 bg-bg-primary hover:shadow-2xl font-semibold leading-7 text-text-primary flex items-center">
+					<a href="logout" class="-mx-3 rounded-lg px-3 py-2 text-base hover:brightness-90 bg-bg-primary hover:shadow-2xl font-semibold leading-7 text-text-primary flex items-center">
 						<span class="material-symbols-outlined mr-3 text-red-500 group-hover:scale-110">
 							logout
 						</span>

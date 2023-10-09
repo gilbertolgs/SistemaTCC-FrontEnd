@@ -1,14 +1,41 @@
-<script>
+<script lang="ts">
 	import Header from '../components/Header.svelte';
 	import logo from '../lib/images/logoVazia.png'
 	import './styles.css';
+
+	import { connectionError, storeLogin } from './stores';
+	import ConnectionError from './errors/+page.svelte';
+    import { onMount } from 'svelte';
+    import Api from '$repository/axiosInstance';
+    import Cookie from '$model/Cookie';
+
+	let connectionErrorValue: number;
+
+	connectionError.subscribe((value) => {
+		connectionErrorValue = value;
+	});
+
+	async function getData(){
+		const userEmail = Cookie.getCookie("email");
+		if(userEmail){
+			const user = await Api.get('usuarios/email', {email : userEmail});
+			if(user){
+				storeLogin.set(user);
+			}
+		}
+	}
+	onMount(getData);
 </script>
 
 <div class="app">
 	<Header />
 
 	<main>
-		<slot/>
+	{#if connectionErrorValue != 200}
+		<ConnectionError />
+	{:else}
+		<slot />
+	  {/if}
 	</main>
 
 	<footer class="bg-bg-primary">

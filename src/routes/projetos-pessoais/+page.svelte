@@ -1,7 +1,26 @@
 <script lang="ts">
+    import Card from '$components/Card.svelte';
+    import { pageName, storeLogin } from '../stores';
+    import type Projeto from '$model/Projeto';
+    import { onMount } from 'svelte';
+    import Api from '$repository/axiosInstance';
+    import Cookie from '$model/Cookie';
+    import type User from '$model/User';
 
-  import Card from '$components/Card.svelte';
-  import { pageName, projetos } from '../stores';
+    let projetos: Projeto[] = [];
+
+    let user: User | null;
+    storeLogin.subscribe((value) => {
+        user = value;
+    });
+
+    async function getData(){
+        if(user){
+            projetos = await Api.get(`projetos/porUsuario/${user.id}`);
+        }
+    }
+
+    onMount(getData);
 </script>
 
 <svelte:head>

@@ -1,8 +1,13 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    import { pageName, projetos } from '../stores';
+    import { pageName } from '../stores';
     import DropDown from '$components/DropDown.svelte';
     import Modal from '$components/Modal.svelte';
+    import Comentarios from '$components/Comentarios.svelte';
+
+    import Api from '$repository/axiosInstance';
+    import Usuario from '$model/Usuario';
+    import Projeto from '$model/Projeto';
 
     let login: any = localStorage.getItem("login");
     if(login) {
@@ -10,57 +15,37 @@
     }
 
     let queryString = '';
+    let idProjeto: number;
     let editandoProjeto = false;
+    let projetoEditado = {
+        id: 0,
+        nome: "string",
+        descricao: "string"
+    }
 
-    
+    let projeto: Projeto = new Projeto(
+        0,
+        0,
+        0,
+        '',
+        '',
+    );
+
     function updateQueryString() {
       const searchParams = new URLSearchParams(window.location.search);
       queryString += searchParams.toString().split('=')[1];
-      projeto.nome = 'Projeto ' + queryString;
-      projeto.id = parseInt(queryString);
+      idProjeto = parseInt(queryString);
 
-      localStorage.setItem('idProjeto', queryString);
-
-      for(let i = 0; i < projetos.length; i++){
-        if(projetos[i].id == projeto.id){
-            projeto = projetos[i];
-        }
-      }
+      getData();
     }
 
-    
+    async function getData(){
+        projeto = await Api.get(`projetos/${idProjeto}`);
+    }
+
     onMount(updateQueryString);
 
     let dadosModal: any;
-
-    let projeto = {
-        id: 1,
-        nome: 'Projeto 1',
-        descricao: 'Lorem ipsum'
-    }
-
-    let comentarios = [
-        {
-            id: 1,
-            texto: 'Lorem Ipsum',
-            editado: false,
-            avaliacao: false,
-            usuario: {
-                id: 2,
-                nome: 'Loreno'
-            }
-        },
-        {
-            id: 2,
-            texto: 'Lorem Ipsum',
-            editado: false,
-            avaliacao: false,
-            usuario: {
-                id: 3,
-                nome: 'Ipsono'
-            }
-        }
-    ]
 
     let opcoes = [
         {
@@ -78,16 +63,17 @@
             botao: (() => openExcluirModal())
         },
     ]
-
-    //if(login.papel == "Administrador") {
-        // opcoes = [
-        //     {
-        //         link: null,
-        //         nome: 'Editar Projeto',
-        //         botao: (() => openPublicarModal())
-        //     }
-        // ]
-    //}
+    if(login){
+        if(login.papel == "Administrador") {
+            opcoes = [
+                {
+                    link: null,
+                    nome: 'Publicar Projeto',
+                    botao: (() => openPublicarModal())
+                }
+            ]
+        }
+    }
 
     function openExcluirModal(){
         dadosModal = {
@@ -128,14 +114,22 @@
     function excluirProjeto(id: number){
         //exclui Projeto
     }
-    
-    let openDropDown: () => void;
-	let closeDropDown: () => void;
 
-    let toggleModal: () => void;
+    async function salvarProjeto(){
+        projetoEditado.id = idProjeto;
+        
+        await Api.put('projetos/atualizarProjeto', projetoEditado);
+        getData();
+        editarProjeto();
+    }
+
     function editarProjeto() {
         editandoProjeto = !editandoProjeto;
+        projetoEditado.nome = projeto.nome;
+        projetoEditado.descricao = projeto.descricao;
     }
+    //Funções Componentes
+    let toggleModal: () => void;
 </script>
 
 <svelte:head>
@@ -152,47 +146,54 @@ dados={dadosModal}
             <div class="flex flex-col items-center">
                 <div class="flex w-full justify-center">
                     {#if editandoProjeto}
-                    Nome: <input type="text" placeholder="{projeto.nome}" class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary placeholder-text-tertiary">
+                    Nome: <input type="text" bind:value={projetoEditado.nome} placeholder="{projeto.nome}" class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary placeholder-text-tertiary">
                     {:else}
                     <h1 class="text-text-secondary font-bold inline-block pb-3 flex-1">{projeto.nome}</h1>
                     {/if}
+                    {#if editandoProjeto}
+                    <div class="ml-auto mb-auto">
+                        <button on:click={salvarProjeto} class="w-full ml-auto mb-auto hover:brightness-90 bg-bg-primary rounded-xl p-3 pb-2 flex justify-center bg-green-500">
+                            <span class="material-symbols-outlined">
+                                done
+                            </span>
+                            Salvar
+                        </button>
+                        <button on:click={editarProjeto} class="w-full ml-auto mb-auto hover:brightness-90 bg-bg-primary rounded-xl p-3 pb-2 flex justify-center bg-red-500">
+                            <span class="material-symbols-outlined">
+                                close
+                            </span>
+                            Cancelar
+                        </button>
+                    </div>
+                    {:else}
                     <div>
-                        <button class="m-0 p-0 group" on:mouseenter={openDropDown} on:mouseleave={closeDropDown}>
+                        <button class="m-0 p-0 group">
                             <span class="material-symbols-outlined justify-end group-hover:rotate-45 transition-all">
                                 settings
                             </span>
+                            <div class="dropDownComponent group-hover:openDropDownComponent" >
                             <DropDown
-                            bind:openDropDown={openDropDown}
-                            bind:closeDropDown={closeDropDown}
+                            id={0}
                             dados={opcoes}
                             perfil={null}
-                            pos={''}
                             />
+                            </div>
                         </button>
                     </div>
+                    {/if}
                 </div>
                 {#if editandoProjeto}
-                Descrição: <input type="text" placeholder="{projeto.descricao}" class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary placeholder-text-tertiary">
+                Descrição: <input type="text" bind:value={projetoEditado.descricao} placeholder="{projeto.descricao}" class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary placeholder-text-tertiary">
                 {:else}
                 <p class="text-text-secondary font-bold inline-block pb-2">{projeto.descricao}</p>
                 {/if}
             </div>
             <div>
-                <h1>Comentarios:</h1>
-                <div class="flex flex-col mb-3 border border-bg-secondary p-3 rounded-lg">
-                    <textarea name="" id="" cols="30" rows="4" class="bg-bg-primary resize-none border border-bg-secondary"></textarea>
-                    <button class="p-2 bg-content-primary hover:scale-110 transition-all rounded-md font-bold hover:brightness-90 flex items-center w-20 mt-2 ml-auto">Comentar</button>
-                </div>
-                <ul class="mt-5">
-                    {#each comentarios as comentario}
-                    <li class="flex flex-col mb-3 border border-bg-secondary p-3 rounded-lg">
-                        <a href="usuario?id={comentario.usuario.id}" class="text-content-primary underline hover:brightness-90">
-                            {comentario.usuario.nome}
-                        </a>
-                        {comentario.texto}
-                    </li>
-                    {/each}
-                </ul>
+                {#if projeto.id != 0}
+                <Comentarios
+                bind:projeto={projeto}
+                />
+                {/if}
             </div>
         </div>    
 </div>

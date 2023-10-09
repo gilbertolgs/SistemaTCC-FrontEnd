@@ -1,17 +1,75 @@
 <script lang="ts">
+    import Projeto from '$model/Projeto';
+    import type Curso from '$model/Curso';
+    import Usuario from '$model/Usuario';
 
-    import { pageName } from '../stores';
+    import { pageName, storeLogin } from '../stores';
+    import { onMount } from 'svelte';
+    
+    import Api from '$repository/axiosInstance';
+    import Cookie from '$model/Cookie';
+    import { goto } from '$app/navigation';
+    import type User from '$model/User';
+    
+    let cursos: Curso[] = [];
 
-    let cursos = [
-        {
-            id: 1,
-            nome: 'Sistemas de Informação'
-        },
-        {
-            id: 2,
-            nome: 'Administração'
-        },
-    ]
+    let nome: string;
+    let descricao: string;
+    let curso: number;
+
+    let user: User | null;
+    storeLogin.subscribe((value) => {
+        user = value;
+    });
+
+    
+	let login: Usuario = new Usuario(
+		0,
+		'null',
+		'null',
+		'null',
+		'null',
+		0,
+	);
+
+    async function getData(){        
+        cursos = await (Api.get('cursos', {query : 1}));        
+    }
+    onMount(getData);    
+
+    function checarCampos(){
+        if(curso == undefined){
+            return false;
+        }
+        else if(nome == undefined){
+            return false;
+        }
+        else if(descricao == undefined){
+            return false;
+        }
+        return true;
+    }
+
+    function limparCampos(){
+        nome = '';
+        descricao = '';
+    }
+    async function criarProjeto(){
+        if(user && checarCampos()){
+            const projeto = new Projeto(
+                0,    
+                curso,
+                user.id,
+                nome,
+                descricao,
+            )
+            await Api.post('projetos/CriarProjeto', projeto);
+
+            limparCampos();
+            goto('/projetos-pessoais');
+        }
+    }
+
 </script>
 
 <svelte:head>
@@ -27,22 +85,22 @@
         <div class="bg-bg-primary shadow-xl p-10 flex flex-col gap-4 text-sm rounded-xl">
             <div>
                 <label class="font-bold inline-block pb-2" for="text">Nome</label>
-                <input required class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary" type="text" name="text">
+                <input bind:value={nome} required class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary" type="text" name="text">
             </div>
             <div>
                 <label class="font-bold inline-block pb-2" for="text">Descrição</label>
-                <input required class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary" type="email" name="email">
+                <input bind:value={descricao} required class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary" type="email" name="email">
             </div>
             <div>
                 <label class="font-bold inline-block pb-2" for="text">Curso</label>
-                <select name="" id="" class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary">
+                <select bind:value={curso} name="" id="" class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary">
                     {#each cursos as curso}
                         <option value="{curso.id}">{curso.nome}</option>
                     {/each}
                 </select>
             </div>
             <div>
-                <input class="w-full py-2 rounded-md text-white font-bold cursor-pointer bg-content-primary hover:brightness-90" type="submit" value="Criar Projeto">
+                <input class="w-full py-2 rounded-md text-white font-bold cursor-pointer bg-content-primary hover:brightness-90" type="submit" value="Criar Projeto" on:click={criarProjeto}>
             </div>
         </div>        
     </div>
