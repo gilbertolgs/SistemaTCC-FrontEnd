@@ -54,7 +54,7 @@
             botao: (() => editarProjeto())
         },
         {
-            link: 'convidar-participante',
+            link: 'projeto/convidar-participante',
             nome: 'Convidar Participante'
         },
         {

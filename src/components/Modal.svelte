@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     let showModal = false;
   
     export function toggleModal() {
@@ -8,6 +8,16 @@
     export let dados = {
         titulo: '',
         mensagem: '',
+        txtBox: [
+          {
+            nome: '',
+            tipo: '',
+          },
+          {
+            nome: '',
+            tipo: '',
+          }
+        ],
         opt1: {
             link: '',
             botao: '',
@@ -16,7 +26,7 @@
         opt2: {
             nome: ''
         }
-    }
+    }    
   </script>
   
   {#if showModal}
@@ -28,6 +38,13 @@
               <h1 class="mb-4 text-3xl font-extrabold">{dados.titulo}</h1>
               <p class="text-text-secondary">{dados.mensagem}</p>
             </div>
+            {#if dados.txtBox}
+              {#each dados.txtBox as txtBox}
+              <div class="mb-4">
+                <label for="name" class="block mb-2 text-sm font-medium text-text-primary">{txtBox.nome}</label>
+              </div>
+              {/each}
+            {/if}
             <div class="space-y-4">
                 {#if dados.opt1.link}
                 <a href="{dados.opt1.link}" class="p-3 bg-content-primary hover:brightness-90 rounded-full text-white w-full font-semibold">{dados.opt1.nome}</a>
