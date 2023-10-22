@@ -6,7 +6,6 @@
     import Comentarios from '$components/Comentarios.svelte';
 
     import Api from '$repository/axiosInstance';
-    import Usuario from '$model/Usuario';
     import Projeto from '$model/Projeto';
 
     let login: any = localStorage.getItem("login");
@@ -29,12 +28,15 @@
         0,
         '',
         '',
+        null
     );
 
     function updateQueryString() {
       const searchParams = new URLSearchParams(window.location.search);
       queryString += searchParams.toString().split('=')[1];
       idProjeto = parseInt(queryString);
+
+      opcoes[1].link = `configuracoes-projeto?id=${idProjeto}`
 
       getData();
     }
@@ -54,7 +56,7 @@
             botao: (() => editarProjeto())
         },
         {
-            link: 'projeto/convidar-participante',
+            link: 'configuracoes-projeto',
             nome: 'Convidar Participante'
         },
         {

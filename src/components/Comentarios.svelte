@@ -32,7 +32,7 @@
                 0,
                 projeto.id,
                 user.id,
-                new Usuario(0, 'null', 'null', 'null', 'null', 0),
+                new Usuario(0, 'null', 'null', 'null', 'null', 0, 'null'),
                 campoComentario
             );
             await Api.post('projetoComentarios/criarComentario', comentario);

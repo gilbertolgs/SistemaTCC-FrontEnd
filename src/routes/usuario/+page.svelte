@@ -17,7 +17,8 @@
         '',
         '',
         '',
-        0
+        0,
+        null
     );
 
     let cursos: Curso[] = [];

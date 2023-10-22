@@ -30,6 +30,7 @@
 		'null',
 		'null',
 		0,
+        null
 	);
 
     async function getData(){        
@@ -62,6 +63,7 @@
                 user.id,
                 nome,
                 descricao,
+                null
             )
             await Api.post('projetos/CriarProjeto', projeto);
 
@@ -100,7 +102,7 @@
                 </select>
             </div>
             <div>
-                <input class="w-full py-2 rounded-md text-white font-bold cursor-pointer bg-content-primary hover:brightness-90" type="submit" value="Criar Projeto" on:click={criarProjeto}>
+                <input class="buttonPrimaryComponent" type="submit" value="Criar Projeto" on:click={criarProjeto}>
             </div>
         </div>        
     </div>

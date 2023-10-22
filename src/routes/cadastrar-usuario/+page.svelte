@@ -43,7 +43,8 @@
                 email,
                 senha,
                 papel,
-                0
+                0,
+                null
             );
             
             Api.post('usuarios/CriarUsuario', user);
@@ -94,7 +95,7 @@
                 </select>
             </div>
             <div>
-                <input on:click={criarUsuario} class="w-full py-2 rounded-md text-white font-bold cursor-pointer bg-content-primary hover:brightness-90" type="submit" value="Cadastrar" >
+                <input on:click={criarUsuario} class="buttonPrimaryComponent" type="submit" value="Cadastrar" >
             </div>
         </div>        
     </div>

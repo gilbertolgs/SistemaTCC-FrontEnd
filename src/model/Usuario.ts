@@ -5,6 +5,7 @@ class Usuario {
   senha: string;
   papel: string;
   periodo: number;
+  imagem: string | null;
 
   constructor(
     idCurso: number,
@@ -12,7 +13,8 @@ class Usuario {
     email: string,
     senha: string,
     papel: string,
-    periodo: number
+    periodo: number,
+    imagem: string | null
   ) {
     this.idCurso = idCurso;
     this.nome = nome;
@@ -20,6 +22,7 @@ class Usuario {
     this.senha = senha;
     this.papel = papel;
     this.periodo = periodo;
+    this.imagem = imagem;
   }
 }
 

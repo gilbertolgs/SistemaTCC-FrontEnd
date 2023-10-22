@@ -96,6 +96,9 @@ body {
 	.openDropDownComponent {
 		@apply py-5 overflow-visible;
 	}
+	.buttonPrimaryComponent {
+		@apply w-full py-2 rounded-md text-white font-bold cursor-pointer bg-content-primary hover:brightness-90;
+	}
 }
 
 ::-webkit-scrollbar {

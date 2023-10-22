@@ -42,7 +42,8 @@
                 email,
                 senha,
                 'Aluno',
-                0
+                0,
+                null
             );
             
             Api.post('usuarios/CriarUsuario', user);

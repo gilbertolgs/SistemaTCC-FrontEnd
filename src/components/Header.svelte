@@ -13,9 +13,14 @@
 	storeConvites.subscribe((value) => {
 		convites = value;
 		notificacoes = [];
+
+		if(convites.length == 0){
+			notificacoes = [];
+		}
+		
 		for (const convite of convites) {
-    		notificacoes.push({
-      			link: 'convites',
+			notificacoes.push({
+				link: 'convites',
       			nome: 'Convite para Projeto: ' + convite.projeto.nome
     		});
 		}
@@ -120,6 +125,7 @@
 			<span class="material-symbols-outlined hover:cursor-pointer hover:scale-110">
 				notifications
 			</span>
+			{#if notificacoes.length > 0}
 			<div class="dropDownComponent group-hover:openDropDownComponent right-0 top-10 mt-3">
 				<DropDown
 				id={0}
@@ -127,6 +133,7 @@
 				perfil={null}
 				/>
 			</div>
+			{/if}
 		</button>
 		{#if login}
 		<div>
