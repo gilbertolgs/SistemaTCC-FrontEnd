@@ -20,7 +20,7 @@
         ],
         opt1: {
             link: '',
-            botao: '',
+            botao: () => {},
             nome: ''
         },
         opt2: {
@@ -48,8 +48,8 @@
             <div class="space-y-4">
                 {#if dados.opt1.link}
                 <a href="{dados.opt1.link}" class="p-3 bg-content-primary hover:brightness-90 rounded-full text-white w-full font-semibold">{dados.opt1.nome}</a>
-                {:else}
-                <button class="p-3 bg-content-primary hover:brightness-90 rounded-full w-full font-semibold">{dados.opt1.nome}</button>
+                {:else if dados.opt1.botao}
+                <button on:click={dados.opt1.botao} class="p-3 bg-content-primary hover:brightness-90 rounded-full w-full font-semibold">{dados.opt1.nome}</button>
                 {/if}
               <button class="p-3 bg-content-primary hover:brightness-90 border rounded-full w-full font-semibold" on:click={toggleModal}>{dados.opt2.nome}</button>
             </div>

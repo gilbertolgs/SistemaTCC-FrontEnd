@@ -91,7 +91,7 @@
             </div>
             <div>
                 <label class="font-bold inline-block pb-2" for="text">Descrição</label>
-                <input bind:value={descricao} required class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary" type="email" name="email">
+                <textarea name="" bind:value={descricao} id="" cols="30" rows="4" class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary resize-none"></textarea>
             </div>
             <div>
                 <label class="font-bold inline-block pb-2" for="text">Curso</label>

@@ -6,7 +6,7 @@
 
     export let projeto: Projeto;
 
-    let pessoas: [
+    let pessoas = [
         {
             id: 0,
             nome: ''
@@ -19,13 +19,15 @@
             nome: ''
         },
     ]
+    convidados = [];
 
-    let partipantes: [
+    let partipantes = [
         {
             id: 0,
             nome: ''
         }
     ]
+    partipantes = [];
 
     $: txtParticipante = '';
     let mostrarLista = false;

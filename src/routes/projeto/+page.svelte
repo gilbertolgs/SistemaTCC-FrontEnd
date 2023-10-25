@@ -36,7 +36,7 @@
       queryString += searchParams.toString().split('=')[1];
       idProjeto = parseInt(queryString);
 
-      opcoes[1].link = `configuracoes-projeto?id=${idProjeto}`
+      opcoes[0].link = `configuracoes-projeto?id=${idProjeto}`
 
       getData();
     }
@@ -51,63 +51,10 @@
 
     let opcoes = [
         {
-            link: null,
-            nome: 'Editar Projeto',
-            botao: (() => editarProjeto())
-        },
-        {
             link: 'configuracoes-projeto',
-            nome: 'Convidar Participante'
-        },
-        {
-            link: null,
-            nome: 'Excluir Projeto',
-            botao: (() => openExcluirModal())
+            nome: 'Gerenciar Projeto'
         },
     ]
-    if(login){
-        if(login.papel == "Administrador") {
-            opcoes = [
-                {
-                    link: null,
-                    nome: 'Publicar Projeto',
-                    botao: (() => openPublicarModal())
-                }
-            ]
-        }
-    }
-
-    function openExcluirModal(){
-        dadosModal = {
-            titulo: 'Excluir Projeto',
-            mensagem: 'Tem certeza que deseja excluir esse projeto?',
-            opt1: {
-                link: null,
-                botao: 'Faz',
-                nome: 'Excluir'
-            },
-            opt2: {
-                nome: 'Cancelar'
-            }
-        }
-        toggleModal();
-    }
-
-    function openPublicarModal(){
-        dadosModal = {
-            titulo: 'Publicar Projeto',
-            mensagem: 'Tem certeza que deseja tornar esse projeto publico?',
-            opt1: {
-                link: null,
-                botao: 'Faz',
-                nome: 'Publicar'
-            },
-            opt2: {
-                nome: 'Cancelar'
-            }
-        }
-        toggleModal();
-    }
 
     function publicarProjeto(id: number){
         //Publica Projeto
