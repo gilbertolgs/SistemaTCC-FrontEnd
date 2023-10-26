@@ -86,7 +86,7 @@
                 </div>
             </div>
             <div>
-                <input class="buttonPrimaryComponent" type="submit" value="Login" on:click={fazerLogin}>
+                <input class="btnPrimaryComponent" type="submit" value="Login" on:click={fazerLogin}>
             </div>
             <div>
                 <a href="cadastro" class="font-bold text-content-primary">Criar Conta</a>

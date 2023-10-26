@@ -103,7 +103,7 @@
         </a>
         {#if editandoComentario == comentario.id}
         <div class="grid grid-flow-col">
-            <textarea bind:value={txtEditandoComentarioConteudo} placeholder="{comentario.conteudo}" class="col-span-5 focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary placeholder-text-tertiary resize-none"/>
+            <textarea bind:value={txtEditandoComentarioConteudo} placeholder="{comentario.conteudo}" class="col-span-5 txtPrimaryComponent resize-none"/>
             <div class="ml-auto mb-auto">
                 <button on:click={() => {salvarComentario(comentario.id)}} class="w-full ml-auto mb-auto hover:brightness-90 bg-bg-primary rounded-xl p-3 pb-2 flex justify-center bg-green-500">
                     <span class="material-symbols-outlined">

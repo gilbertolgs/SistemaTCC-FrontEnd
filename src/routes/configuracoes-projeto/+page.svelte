@@ -9,6 +9,7 @@
 
     import Api from '$repository/axiosInstance';
     import Projeto from '$model/Projeto';
+    import type Curso from "$model/Curso";
 
     let login: any = localStorage.getItem("login");
     if(login) {
@@ -33,6 +34,8 @@
         null
     );
 
+    let cursos: Curso[] = [];
+
     function updateQueryString() {
       const searchParams = new URLSearchParams(window.location.search);
       queryString += searchParams.toString().split('=')[1];
@@ -42,6 +45,7 @@
     }
 
     async function getData(){
+        cursos = await Api.get('cursos');
         projeto = await Api.get(`projetos/${idProjeto}`);
     }
 
@@ -63,12 +67,13 @@
 <div class="flex flex-col items-center text-text-primary">
     <div class="grid grid-flow-col mx-auto w-[50%] bg-bg-primary shadow-xl gap-1 rounded-xl mb-2">
         {#each rotas as rota}
-            <button class="h-full buttonPrimaryComponent" on:click={() => (togglePagina(rota))}>{rota}</button>
+            <button class="h-full btnPrimaryComponent" on:click={() => (togglePagina(rota))}>{rota}</button>
         {/each}
     </div>
     {#if paginaAtual == 'Editar'}
         <Editar
         bind:projeto={projeto}
+        bind:cursos={cursos}
         />
     {:else if paginaAtual == 'Participantes'}
         <Participantes

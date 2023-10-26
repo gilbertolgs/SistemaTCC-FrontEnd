@@ -78,10 +78,10 @@
         <div class="bg-bg-primary shadow-xl p-10 flex flex-col gap-4 text-sm rounded-xl">
             <div>
                 <label class="font-bold inline-block pb-2" for="text">Nome</label>
-                <input bind:value={txtNome} required class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary placeholder-text-tertiary" type="text" name="text" placeholder="exemplo">
+                <input bind:value={txtNome} required class="txtPrimaryComponent" type="text" name="text" placeholder="exemplo">
             </div>
             <div>
-                <input class="buttonPrimaryComponent" type="submit" value="{textoBotao}" on:click={criarCurso}>
+                <input class="btnPrimaryComponent" type="submit" value="{textoBotao}" on:click={criarCurso}>
                 {#if alterando}
                 <input class="w-full mt-2 py-2 rounded-md text-white font-bold cursor-pointer bg-red-500 hover:brightness-90" type="submit" value="Cancelar" on:click={cancelarAlteracao}>
                 {/if}

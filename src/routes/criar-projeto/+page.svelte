@@ -102,7 +102,7 @@
                 </select>
             </div>
             <div>
-                <input class="buttonPrimaryComponent" type="submit" value="Criar Projeto" on:click={criarProjeto}>
+                <input class="btnPrimaryComponent" type="submit" value="Criar Projeto" on:click={criarProjeto}>
             </div>
         </div>        
     </div>

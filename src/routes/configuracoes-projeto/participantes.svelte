@@ -97,7 +97,7 @@
                 {#if pessoas}
                 {#each pessoas as pessoa}
                 <li>
-                    <button class="buttonPrimaryComponent" on:click={() => (selecionaParticipante(pessoa))}>{pessoa.nome} | Convidar Participante</button>
+                    <button class="btnPrimaryComponent" on:click={() => (selecionaParticipante(pessoa))}>{pessoa.nome} | Convidar Participante</button>
                 </li>
                 {/each}
                 {/if}
@@ -110,7 +110,7 @@
             <textarea name="" id="" cols="30" rows="4" class="focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2 resize-none border border-bg-secondary"></textarea>
         </div>
         <div>
-            <input class="buttonPrimaryComponent" type="submit" value="Enviar Convite" on:click={enviarConvite}>
+            <input class="btnPrimaryComponent" type="submit" value="Enviar Convite" on:click={enviarConvite}>
         </div>
     </div>
     <div class="w-full mt-2 bg-bg-primary shadow-xl p-5 flex flex-col gap-4 text-sm rounded-xl">

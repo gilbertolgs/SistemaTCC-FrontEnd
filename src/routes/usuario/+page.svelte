@@ -75,14 +75,14 @@
         <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="imagem de perfil" class="h-20 w-20 rounded-lg border border-text-primary m-3">
         <div class="flex flex-col text-text-secondary font-bold">
             {#if editandoPerfil}
-            Nome de Usuario: <input type="text" bind:value={usuario.nome} placeholder="{usuario.nome}" class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary placeholder-text-tertiary">
-            E-mail: <input type="text" bind:value={usuario.email} placeholder="{usuario.email}" class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary placeholder-text-tertiary">
+            Nome de Usuario: <input type="text" bind:value={usuario.nome} placeholder="{usuario.nome}" class="txtPrimaryComponent">
+            E-mail: <input type="text" bind:value={usuario.email} placeholder="{usuario.email}" class="txtPrimaryComponent">
             Curso:  <select name="" id="" bind:value={usuario.idCurso} class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary">
                 {#each cursos as curso}
                     <option value="{curso.id}">{curso.nome}</option>
                 {/each}
             </select>
-            Papel: <input type="text" bind:value={usuario.papel} placeholder="{usuario.papel}" class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary placeholder-text-tertiary">
+            Papel: <input type="text" bind:value={usuario.papel} placeholder="{usuario.papel}" class="txtPrimaryComponent">
             {:else}
             Nome de Usuario: {usuario.nome} <br>
             E-mail: {usuario.email} <br>

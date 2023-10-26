@@ -61,19 +61,19 @@
         <div class="bg-bg-primary shadow-xl p-10 flex flex-col gap-4 text-sm rounded-xl">
             <div>
                 <label class="font-bold inline-block pb-2" for="text">Nome</label>
-                <input bind:value={nome} required class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary placeholder-text-tertiary" type="text" name="text" placeholder="exemplo">
+                <input bind:value={nome} required class="txtPrimaryComponent" type="text" name="text" placeholder="exemplo">
             </div>
             <div>
                 <label class="font-bold inline-block pb-2" for="email">Email</label>
-                <input bind:value={email} required class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary placeholder-text-tertiary" type="email" name="email" placeholder="exemplo@aedb.br">
+                <input bind:value={email} required class="txtPrimaryComponent" type="email" name="email" placeholder="exemplo@aedb.br">
             </div>
             <div>
                 <label class="font-bold inline-block pb-2" for="password">Senha</label>
-                <input bind:value={senha} required class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary placeholder-text-tertiary" type="password" name="password" placeholder="******">
+                <input bind:value={senha} required class="txtPrimaryComponent" type="password" name="password" placeholder="******">
             </div>
             <div>
                 <label class="font-bold inline-block pb-2" for="password">Confirmar Senha</label>
-                <input required class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary placeholder-text-tertiary" type="password" name="password" placeholder="******">
+                <input required class="txtPrimaryComponent" type="password" name="password" placeholder="******">
             </div>
             <div>
                 <label class="font-bold inline-block pb-2" for="text">Curso</label>
