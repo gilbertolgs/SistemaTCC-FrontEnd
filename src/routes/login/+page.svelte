@@ -42,6 +42,12 @@
         }
     }
 
+    function fazerLoginKeyPress(event : KeyboardEvent){
+        if(event.key == 'Enter'){
+            fazerLogin();
+        }
+    }
+
     function salvarCookie(login: any, user: any) {
         const daysToExpire=2;
         const expirationDate=new Date();
@@ -55,8 +61,6 @@
 
     console.log(Cookie.getCookie("email"));
     console.log(Cookie.getCookie("token"));
-
-
 </script>
 <svelte:head>
 	<title>{pageName} - Login</title>
@@ -70,11 +74,11 @@
         <div class="bg-bg-primary shadow-xl p-10 flex flex-col gap-4 text-sm">
             <div>
                 <label class="font-bold inline-block pb-2" for="email">Email</label>
-                <input class="border border-gray-400 text-black focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="email" name="email" placeholder="exemplo@aedb.br" bind:value={email}>
+                <input class="border border-gray-400 text-black focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="email" name="email" placeholder="exemplo@aedb.br" bind:value={email} on:keypress={fazerLoginKeyPress}>
             </div>
             <div>
                 <label class="font-bold inline-block pb-2" for="password">Senha</label>
-                <input class="border border-gray-400 text-black focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="password" name="password" placeholder="******" bind:value={senha}>
+                <input class="border border-gray-400 text-black focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="password" name="password" placeholder="******" bind:value={senha} on:keypress={fazerLoginKeyPress}>
             </div>
             <div class="flex">
                 <div class="w-1/2">

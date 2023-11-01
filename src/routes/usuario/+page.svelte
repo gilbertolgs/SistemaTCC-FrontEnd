@@ -1,12 +1,18 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import Card from '$components/Card.svelte';
-    import { pageName } from '../stores';
+    import { pageName, storeLogin } from '../stores';
     import Usuario from '$model/Usuario';
     import Api from '$repository/axiosInstance';
     import type Curso from '$model/Curso';
     import type Projeto from '$model/Projeto';
-    import { error } from '@sveltejs/kit';
+    import type User from '$model/User';
+    
+    //Usuario Logado
+    let currentUser: User | null;
+    storeLogin.subscribe((value) => {
+        currentUser = value;
+    });
 
     let queryString = '';
     let idUsuario: number;
@@ -21,9 +27,19 @@
         null
     );
 
+
     let cursos: Curso[] = [];
     let nomeCurso: string;
-    
+
+    let txtNome: string;
+    let txtEmail: string;
+    let lstCurso: number;
+
+    function updateCamposTexto(){
+        txtNome = usuario.nome;
+        txtEmail = usuario.email;
+        lstCurso = usuario.idCurso;
+    }
     
     function updateQueryString() {
       const searchParams = new URLSearchParams(window.location.search);
@@ -45,9 +61,7 @@
         if(cursoUsuario){
             nomeCurso = cursoUsuario;
         }
-
-        console.log(cursoUsuario);
-        
+        updateCamposTexto();
     }
 
     onMount(updateQueryString);
@@ -55,13 +69,39 @@
     let editandoPerfil = false;
     function editarPerfil() {
         editandoPerfil = !editandoPerfil;
+        updateCamposTexto();
     }
 
-    function salvarPerfil() {
-        editandoPerfil = !editandoPerfil;
+    async function salvarPerfil() {
+        const data = {
+            nome: txtNome,
+            email: txtEmail,
+            idCurso: lstCurso
+        }
+
+        if(checarCampos()){
+            await Api.put(`usuarios/${idUsuario}/atualizarUsuario`, data);
+            
+            getData();
+            editandoPerfil = !editandoPerfil;
+        }
+        else{
+            alert('Errou!');
+        }
         
-        //Nao feito
-        throw error(0, 'Funcionalidade não implementada');
+    }
+
+    function checarCampos(){
+        if(txtNome == ''){
+            return false;
+        }
+        else if(txtEmail == '' || txtEmail.includes('@aedb.br') == false){
+            return false;
+        }
+        else if(lstCurso == 0 || lstCurso == undefined){
+            return false;
+        }
+        return true;
     }
 </script>
 
@@ -75,14 +115,14 @@
         <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="imagem de perfil" class="h-20 w-20 rounded-lg border border-text-primary m-3">
         <div class="flex flex-col text-text-secondary font-bold">
             {#if editandoPerfil}
-            Nome de Usuario: <input type="text" bind:value={usuario.nome} placeholder="{usuario.nome}" class="txtPrimaryComponent">
-            E-mail: <input type="text" bind:value={usuario.email} placeholder="{usuario.email}" class="txtPrimaryComponent">
-            Curso:  <select name="" id="" bind:value={usuario.idCurso} class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary">
+            Nome de Usuario: <input type="text" bind:value={txtNome} placeholder="{usuario.nome}" class="txtPrimaryComponent">
+            E-mail: <input type="text" bind:value={txtEmail} placeholder="{usuario.email}" disabled class="txtPrimaryComponent border border-text-primary">
+            Curso:  <select name="" id="" bind:value={lstCurso} class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary">
                 {#each cursos as curso}
                     <option value="{curso.id}">{curso.nome}</option>
                 {/each}
             </select>
-            Papel: <input type="text" bind:value={usuario.papel} placeholder="{usuario.papel}" class="txtPrimaryComponent">
+            Papel: <input type="text" bind:value={usuario.papel} disabled class="txtPrimaryComponent border border-text-primary">
             {:else}
             Nome de Usuario: {usuario.nome} <br>
             E-mail: {usuario.email} <br>
@@ -91,14 +131,14 @@
             {/if}
         </div>
         {#if editandoPerfil}
-        <div class="ml-auto mb-auto">
-            <button on:click={salvarPerfil} class="w-full ml-auto mb-auto hover:brightness-90 bg-bg-primary rounded-xl p-3 pb-2 flex justify-center bg-green-500">
+        <div class="ml-auto mb-auto flex flex-col gap-1">
+            <button on:click={salvarPerfil} class="btnPrimaryComponent flex justify-center rounded-xl p-3 bg-green-500">
                 <span class="material-symbols-outlined">
                     done
                 </span>
                 Salvar
             </button>
-            <button on:click={editarPerfil} class="w-full ml-auto mb-auto hover:brightness-90 bg-bg-primary rounded-xl p-3 pb-2 flex justify-center bg-red-500">
+            <button on:click={editarPerfil} class="btnPrimaryComponent flex justify-center rounded-xl p-3 bg-red-500">
                 <span class="material-symbols-outlined">
                     close
                 </span>
@@ -106,12 +146,14 @@
             </button>
         </div>
         {:else}
+        {#if currentUser?.id == idUsuario}
         <button on:click={editarPerfil} class="ml-auto mb-auto hover:brightness-90 bg-bg-primary rounded-xl p-3 pb-2 flex justify-center">
             <span class="material-symbols-outlined">
                 edit
             </span>
             Editar Perfil
         </button>
+        {/if}
         {/if}
     </div>        
 </div>

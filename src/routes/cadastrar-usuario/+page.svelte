@@ -5,11 +5,11 @@
     import Usuario from '$model/Usuario';
     import Api from '$repository/axiosInstance';
 
-    let nome: string;
-    let email: string;
-    let senha: string;
-    let curso: number;
-    let papel: string;
+    let txtNome: string;
+    let txtEmail: string;
+    let txtSenha: string;
+    let lstCurso: number;
+    let txtPapel: string;
     
     let cursos: Curso[] = [];
     
@@ -20,16 +20,16 @@
     onMount(getData);
 
     function checarCampos(){
-        if(curso == undefined){
+        if(lstCurso == undefined){
             return false;
         }
-        else if(nome == undefined){
+        else if(txtNome == undefined){
             return false;
         }
-        else if(email == undefined || email.includes('@aedb.br') == false){
+        else if(txtEmail == undefined || txtEmail.includes('@aedb.br') == false){
             return false;
         }
-        else if(senha == undefined){
+        else if(txtSenha == undefined){
             return false;
         }
         return true;
@@ -38,16 +38,17 @@
     function criarUsuario(){        
         if(checarCampos()){
             const user = new Usuario(
-                curso,
-                nome,
-                email,
-                senha,
-                papel,
+                lstCurso,
+                txtNome,
+                txtEmail,
+                txtSenha,
+                txtPapel,
                 0,
                 null
-            );
-            
-            Api.post('usuarios/CriarUsuario', user);
+                );
+                
+                Api.post('usuarios/CriarUsuario', user);
+                alert('Usuario criado com sucesso!');
         }
     }
 
@@ -64,15 +65,15 @@
         <div class="bg-bg-primary shadow-xl p-10 flex flex-col gap-4 text-sm rounded-xl">
             <div>
                 <label class="font-bold inline-block pb-2" for="text">Nome</label>
-                <input bind:value={nome} required class="txtPrimaryComponent" type="text" name="text" placeholder="exemplo">
+                <input bind:value={txtNome} required class="txtPrimaryComponent" type="text" name="text" placeholder="exemplo">
             </div>
             <div>
                 <label class="font-bold inline-block pb-2" for="email">Email</label>
-                <input bind:value={email} required class="txtPrimaryComponent" type="email" name="email" placeholder="exemplo@aedb.br">
+                <input bind:value={txtEmail} required class="txtPrimaryComponent" type="email" name="email" placeholder="exemplo@aedb.br">
             </div>
             <div>
                 <label class="font-bold inline-block pb-2" for="password">Senha</label>
-                <input bind:value={senha} required class="txtPrimaryComponent" type="password" name="password" placeholder="******">
+                <input bind:value={txtSenha} required class="txtPrimaryComponent" type="password" name="password" placeholder="******">
             </div>
             <div>
                 <label class="font-bold inline-block pb-2" for="password">Confirmar Senha</label>
@@ -80,7 +81,7 @@
             </div>
             <div>
                 <label class="font-bold inline-block pb-2" for="text">Curso</label>
-                <select name="" id="" class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary">
+                <select bind:value={lstCurso} class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary">
                     {#each cursos as curso}
                         <option value="{curso.id}">{curso.nome}</option>
                     {/each}
@@ -88,14 +89,16 @@
             </div>
             <div>
                 <label class="font-bold inline-block pb-2" for="text">Papel</label>
-                <select name="" id="" bind:value={papel} class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary">
+                <select name="" id="" bind:value={txtPapel} class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary">
                     {#each papeis as papel}
                         <option value="{papel}">{papel}</option>
                     {/each}
                 </select>
             </div>
             <div>
-                <input on:click={criarUsuario} class="btnPrimaryComponent" type="submit" value="Cadastrar" >
+                <button class="btnPrimaryComponent" on:click={criarUsuario}>
+                    Cadastrar
+                </button>
             </div>
         </div>        
     </div>
