@@ -20,6 +20,8 @@
     let user: User | null;
     storeLogin.subscribe((value) => {
         user = value;
+        console.log(user);
+        
     });
 
     

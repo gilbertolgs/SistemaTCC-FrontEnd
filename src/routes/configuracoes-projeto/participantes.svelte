@@ -2,7 +2,9 @@
     import type Projeto from "$model/Projeto";
     import type User from "$model/User";
     import Api from "$repository/axiosInstance";
+    import { error } from "@sveltejs/kit";
     import { onMount } from "svelte";
+    import { storeLogin } from "../stores";
 
     export let projeto: Projeto;
 
@@ -34,9 +36,17 @@
     let participante: any;
     let cboPapel = 'Aluno';
 
+    //Usuario Logado
+    let currentUser: User | null;
+    storeLogin.subscribe((value) => {
+        currentUser = value;
+    });
+
     async function getData(){
         //Fazer função na api para pegar os participantes
-        partipantes = await Api.get("usuarios/porProjeto", {idProjeto: projeto.id});
+        partipantes = await Api.get("usuarios/userByProject", {id: projeto.id});
+        console.log(partipantes);
+        
     }
 
     onMount(getData);
@@ -77,6 +87,10 @@
     function removerConvite(idConvite: number) {
         //recusar convite
     }
+
+    function deixarProjeto(){
+        throw error(1, 'n ta feito');
+    }
 </script>
 
 <div class="h-max mx-auto flex flex-col items-center">
@@ -113,6 +127,7 @@
             <input class="btnPrimaryComponent" type="submit" value="Enviar Convite" on:click={enviarConvite}>
         </div>
     </div>
+    {#if convidados.length > 0}
     <div class="w-full mt-2 bg-bg-primary shadow-xl p-5 flex flex-col gap-4 text-sm rounded-xl">
         <div class="tableHolderComponent w-full my-0">
             <table class="tableComponent">
@@ -136,6 +151,8 @@
             </table>
         </div>
     </div>
+    {/if}
+    {#if partipantes.length > 0}
     <div class="w-full mt-2 bg-bg-primary shadow-xl p-5 flex flex-col gap-4 text-sm rounded-xl">
         <div class="tableHolderComponent w-full my-0">
             <table class="tableComponent">
@@ -150,13 +167,18 @@
                         <th class="w-full border-b">
                             <p>{participa.nome}</p>
                         </th>
+                        {#if currentUser?.id == participa.id}
                         <th>
-                            <p>Deixar projeto se for usuario</p>
+                            <button class="btnPrimaryComponent p-3" on:click={deixarProjeto}>
+                                Deixar Projeto
+                            </button>
                         </th>
+                        {/if}
                     </tr>
                     {/each}
                 </tbody>
             </table>
         </div>
     </div>     
+    {/if}
 </div>

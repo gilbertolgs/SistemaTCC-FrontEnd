@@ -53,11 +53,16 @@
         getData();
     }
 
-
     function cancelarAlteracao() {
         alterando = 0;
         txtNome = '';
         textoBotao = 'Cadastrar';
+    }
+
+    function criarCursoKeyPress(event : KeyboardEvent){
+        if(event.key == 'Enter'){
+            criarCurso();
+        }
     }
 </script>
 
@@ -78,7 +83,7 @@
         <div class="bg-bg-primary shadow-xl p-10 flex flex-col gap-4 text-sm rounded-xl">
             <div>
                 <label class="font-bold inline-block pb-2" for="text">Nome</label>
-                <input bind:value={txtNome} required class="txtPrimaryComponent" type="text" name="text" placeholder="exemplo">
+                <input bind:value={txtNome} on:keypress={criarCursoKeyPress} required class="txtPrimaryComponent" type="text" name="text" placeholder="exemplo">
             </div>
             <div>
                 <input class="btnPrimaryComponent" type="submit" value="{textoBotao}" on:click={criarCurso}>

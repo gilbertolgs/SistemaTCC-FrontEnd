@@ -1,12 +1,15 @@
 <script lang="ts">
 	import logo from '$lib/images/logoVazia.png';
     import type Convite from '$model/Covite';
-    import Api from '$repository/axiosInstance';
     import { onMount } from 'svelte';
     import { storeConvites, storeLogin } from '../routes/stores';
 	import DropDown from './DropDown.svelte';
-    import Cookie from '$model/Cookie';
-    import Usuario from '$model/Usuario';
+
+	function getData(){
+		notificacoes = [];
+		login = undefined;
+	}
+	onMount(getData);
 
 	let convites: Convite[] = [];
 
@@ -24,6 +27,10 @@
       			nome: 'Convite para Projeto: ' + convite.projeto.nome
     		});
 		}
+
+		console.log('convites');
+		console.log(convites);
+		
 	});
 	
 	let login: any;
@@ -121,11 +128,9 @@
 				<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-content-primary brightness-110 opacity-75"></span>
 				<span class="relative inline-flex rounded-full h-3 w-3 bg-content-primary"></span>
 			</span>
-			{/if}
 			<span class="material-symbols-outlined hover:cursor-pointer hover:scale-110">
 				notifications
 			</span>
-			{#if notificacoes.length > 0}
 			<div class="dropDownComponent group-hover:openDropDownComponent right-0 top-10 mt-3">
 				<DropDown
 				id={0}
