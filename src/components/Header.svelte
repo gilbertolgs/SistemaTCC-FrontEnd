@@ -4,10 +4,17 @@
     import { onMount } from 'svelte';
     import { storeConvites, storeLogin } from '../routes/stores';
 	import DropDown from './DropDown.svelte';
+    import type User from '$model/User';
+    import { get } from 'svelte/store';
 
 	function getData(){
 		notificacoes = [];
-		login = undefined;
+
+		if(currentUser){
+			if(currentUser.papel == 'Administrador'){
+				diretorios = diretoriosAdmin;
+			}
+		}
 	}
 	onMount(getData);
 
@@ -33,10 +40,10 @@
 		
 	});
 	
-	let login: any;
+	let currentUser: User | null = null;
 
 	storeLogin.subscribe((value) => {
-		login = value;
+		currentUser = value;
 	});
 
 	$: notificacoes = [
@@ -92,13 +99,8 @@
 		},
 		
 	];
-
-	diretorios.push(...diretoriosAdmin);
-	if(login){
-		if(login.papel == 'Administrador'){
-			diretorios = diretoriosAdmin;
-		}
-	}
+	//Tirar para debugar
+	//diretorios.push(...diretoriosAdmin);
 
 	let sideMenuActive = 'w-11';
 	let textoVisivel = 'scale-0 fixed';
@@ -140,14 +142,14 @@
 			</div>
 			{/if}
 		</button>
-		{#if login}
+		{#if currentUser}
 		<div>
 			<button class="group text-sm font-semibold leading-6 hover:underline hover:cursor-pointer">
-				{login.nome}
+				{currentUser.nome}
 				<div class="dropDownComponent group-hover:openDropDownComponent right-0 top-10 mt-3">
 					<DropDown
 					id={0}
-					perfil={login}
+					perfil={currentUser}
 					dados={null}
 					/>
 				</div>
@@ -204,7 +206,7 @@
 						</span>
 					</button>
 				</li>
-				{#if login}
+				{#if currentUser}
 				<li class="space-y-2 py-3 w-full m-1 group">
 					<a href="logout" class="-mx-3 rounded-lg px-3 py-2 text-base hover:brightness-90 bg-bg-primary hover:shadow-2xl font-semibold leading-7 text-text-primary flex items-center">
 						<span class="material-symbols-outlined mr-3 text-red-500 group-hover:scale-110">

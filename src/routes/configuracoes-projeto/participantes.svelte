@@ -5,6 +5,7 @@
     import { error } from "@sveltejs/kit";
     import { onMount } from "svelte";
     import { storeLogin } from "../stores";
+    import { get } from "svelte/store";
 
     export let projeto: Projeto;
 
@@ -31,31 +32,35 @@
     ]
     partipantes = [];
 
-    $: txtParticipante = '';
+    let txtParticipante = '';
     let mostrarLista = false;
     let participante: any;
     let cboPapel = 'Aluno';
 
     //Usuario Logado
     let currentUser: User | null;
+
+    //TrocarAki
     storeLogin.subscribe((value) => {
         currentUser = value;
     });
 
     async function getData(){
-        //Fazer função na api para pegar os participantes
-        partipantes = await Api.get("usuarios/userByProject", {id: projeto.id});
-        console.log(partipantes);
+        currentUser = get(storeLogin);
         
+        partipantes = await Api.get("usuarios/userByProject", {id: projeto.id});
     }
 
     onMount(getData);
 
     async function atualizaLista(){
         if(txtParticipante.length == 3){
-            const papel = cboPapel;
+            const query = {
+                Papel: cboPapel,
+                Nome: txtParticipante
+            }
             
-            pessoas = await Api.get("usuarios/userByRole", {papel});
+            pessoas = await Api.get("usuarios/findUsers", query);
         }
         
         //Fazer filtro
@@ -68,7 +73,12 @@
     }
 
     async function selecionaParticipante(usuario: any){
-        participante = await Api.get("usuarios/email", {email : usuario.email});
+        if(usuario){
+            participante = await Api.get("usuarios/email", {email : usuario.email});
+        }
+        else{
+            participante = null;
+        }
         txtParticipante = '';
         mostrarLista = false;
     }
@@ -81,6 +91,7 @@
         }
         await Api.post('convites/enviarConvite', convite);
 
+        selecionaParticipante(null);
         getData();
     }
 

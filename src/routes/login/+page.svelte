@@ -33,7 +33,8 @@
                 '',
                 user.idCurso,
                 user.papel,
-                login.token
+                login.token,
+                null
             );
             
             storeLogin.set(saveCookieUser);

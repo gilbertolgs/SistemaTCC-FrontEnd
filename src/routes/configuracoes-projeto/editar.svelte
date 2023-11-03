@@ -2,11 +2,15 @@
     import Modal from "$components/Modal.svelte";
     import type Curso from "$model/Curso";
     import type Projeto from "$model/Projeto";
+    import type User from "$model/User";
     import Api from "$repository/axiosInstance";
+    import { get } from "svelte/store";
+    import { storeLogin } from "../stores";
 
     export let projeto: Projeto;
     export let cursos: Curso[] = [];
 
+    let currentUser: User | null;
     let dadosModal: any;
     let editando = false;
 
@@ -16,6 +20,7 @@
 
     
     async function getData(){
+        currentUser = get(storeLogin);
         projeto = await Api.get(`projetos/${projeto.id}`);
     }
 
@@ -114,7 +119,7 @@ dados={dadosModal}
             {:else}
             <h1>{projeto.nome}</h1>
             <h2>{projeto.descricao}</h2>
-            <h2>{projeto.idCurso}</h2>
+            <!-- <h2>{projeto.idCurso}</h2> -->
             {/if}
         </div>
         {#if editando == false}
@@ -161,6 +166,7 @@ dados={dadosModal}
                 </span>
                 Finalizar Projeto
             </button>
+            {#if currentUser?.papel == 'Administrador'}
             <button on:click={() => {openModal(
                 'Publicar Projeto',
                 'Tem certeza que deseja tornar esse projeto publico?',
@@ -172,13 +178,14 @@ dados={dadosModal}
                 {
                     nome: 'Cancelar'
                 }
-            )}}
+                )}}
             class="btnPrimaryComponent flex text-center justify-center">
                 <span class="material-symbols-outlined mr-2">
                     done
                 </span>
                 Tornar Publico
             </button>
+            {/if}
         </div>
         {/if}
     </div>

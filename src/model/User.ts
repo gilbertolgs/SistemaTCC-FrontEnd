@@ -12,12 +12,15 @@ class User extends Usuario {
     senha: string,
     papel: string,
     periodo: number,
-    token: string
+    token: string,
+    imagem: string | null
   ) {
-    super(idCurso, nome, email, senha, papel, periodo);
+    super(idCurso, nome, email, senha, papel, periodo, imagem);
     this.id = id;
     this.token = token;
   }
+
+
 }
 
 export default User;
