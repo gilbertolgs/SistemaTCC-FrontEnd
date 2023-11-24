@@ -5,16 +5,31 @@
     import { storeConvites, storeLogin } from '../routes/stores';
 	import DropDown from './DropDown.svelte';
     import type User from '$model/User';
-    import { get } from 'svelte/store';
 
 	function getData(){
 		notificacoes = [];
 
-		if(currentUser){
-			if(currentUser.papel == 'Administrador'){
-				diretorios = diretoriosAdmin;
+		if(localStorage.getItem('theme') != null){
+			if(localStorage.getItem('theme') == 'dark'){
+				colorTheme = 'dark'
+				document.documentElement.setAttribute("data-theme", colorTheme);
+			}
+			else if(localStorage.getItem('theme') == 'light'){
+				colorTheme = 'light'
+				document.documentElement.setAttribute("data-theme", colorTheme);
+			}
+
+		}
+		else{
+			if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			  // Usuario prefere tema escuro
+			  colorTheme = 'dark';
+			} else {
+			  // Usuario prefere tema claro
+			  colorTheme = 'light';
 			}
 		}
+
 	}
 	onMount(getData);
 
@@ -24,6 +39,7 @@
 		convites = value;
 		notificacoes = [];
 
+		
 		if(convites.length == 0){
 			notificacoes = [];
 		}
@@ -34,16 +50,24 @@
       			nome: 'Convite para Projeto: ' + convite.projeto.nome
     		});
 		}
-
-		console.log('convites');
-		console.log(convites);
-		
 	});
 	
 	let currentUser: User | null = null;
 
 	storeLogin.subscribe((value) => {
-		currentUser = value;
+		currentUser = value;		
+
+		if(currentUser.id != 0){		
+			if(currentUser.papel == "Administrador"){
+				diretorios = diretoriosAdmin;
+			}
+			else{
+				diretorios = diretoriosUsuario;
+			}
+		}
+		else{
+			diretorios = diretoriosPadrao;
+		}
 	});
 
 	$: notificacoes = [
@@ -53,8 +77,24 @@
 		}
 	];
 
-	let diretorios = [
+	$: diretorios = [
         {
+            link: 'biblioteca',
+            nome: 'Biblioteca de Projetos',
+			icon: 'library_books'
+        }
+    ]
+
+	$: diretoriosPadrao = [
+        {
+            link: 'biblioteca',
+            nome: 'Biblioteca de Projetos',
+			icon: 'library_books'
+        }
+    ]
+
+	$: diretoriosUsuario = [
+		{
             link: 'biblioteca',
             nome: 'Biblioteca de Projetos',
 			icon: 'library_books'
@@ -74,9 +114,9 @@
 			nome: 'Convites',
 			icon: 'email'
 		}
-    ]
+	]
 
-	let diretoriosAdmin = [
+	$: diretoriosAdmin = [
 		{
             link: 'biblioteca',
             nome: 'Biblioteca de Projetos',
@@ -100,6 +140,7 @@
 		
 	];
 	//Tirar para debugar
+	//diretorios.push(...diretoriosUsuario);
 	//diretorios.push(...diretoriosAdmin);
 
 	let sideMenuActive = 'w-11';
@@ -115,6 +156,7 @@
 		colorTheme = colorTheme == 'light' ? 'dark' : 'light';
 
 		document.documentElement.setAttribute("data-theme", colorTheme);
+		localStorage.setItem('theme', colorTheme);
 	};
 </script>
 
@@ -142,10 +184,10 @@
 			</div>
 			{/if}
 		</button>
-		{#if currentUser}
+		{#if currentUser?.id != 0}
 		<div>
 			<button class="group text-sm font-semibold leading-6 hover:underline hover:cursor-pointer">
-				{currentUser.nome}
+				{currentUser?.nome}
 				<div class="dropDownComponent group-hover:openDropDownComponent right-0 top-10 mt-3">
 					<DropDown
 					id={0}
@@ -206,7 +248,7 @@
 						</span>
 					</button>
 				</li>
-				{#if currentUser}
+				{#if currentUser?.id != 0}
 				<li class="space-y-2 py-3 w-full m-1 group">
 					<a href="logout" class="-mx-3 rounded-lg px-3 py-2 text-base hover:brightness-90 bg-bg-primary hover:shadow-2xl font-semibold leading-7 text-text-primary flex items-center">
 						<span class="material-symbols-outlined mr-3 text-red-500 group-hover:scale-110">

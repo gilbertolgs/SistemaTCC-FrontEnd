@@ -32,7 +32,7 @@
                 0,
                 projeto.id,
                 user.id,
-                new Usuario(0, 'null', 'null', 'null', 'null', 0, 'null'),
+                new Usuario(0, 'null', 'null', 'null', 'null', 'null'),
                 campoComentario
             );
             await Api.post('projetoComentarios/criarComentario', comentario);
@@ -92,7 +92,7 @@
 
 <div class="flex flex-col my-2 border border-bg-secondary p-3 rounded-lg">
     <h1>Comentarios:</h1>
-    <textarea name="" bind:value={campoComentario} id="" cols="30" rows="4" class="bg-bg-primary resize-none border border-bg-secondary"></textarea>
+    <textarea name="" bind:value={campoComentario} id="" cols="30" rows="4" class="txtPrimaryComponent resize-none border-2"></textarea>
     <button on:click={comentar} class="p-2 bg-content-primary hover:scale-110 transition-all rounded-md font-bold hover:brightness-90 flex items-center w-20 mt-2 ml-auto">Comentar</button>
 </div>
 <ul class="mt-5">

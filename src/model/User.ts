@@ -11,11 +11,10 @@ class User extends Usuario {
     email: string,
     senha: string,
     papel: string,
-    periodo: number,
+    imagem: string | null,
     token: string,
-    imagem: string | null
   ) {
-    super(idCurso, nome, email, senha, papel, periodo, imagem);
+    super(idCurso, nome, email, senha, papel, imagem);
     this.id = id;
     this.token = token;
   }

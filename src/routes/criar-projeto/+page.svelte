@@ -20,8 +20,6 @@
     let user: User | null;
     storeLogin.subscribe((value) => {
         user = value;
-        console.log(user);
-        
     });
 
     
@@ -31,7 +29,6 @@
 		'null',
 		'null',
 		'null',
-		0,
         null
 	);
 

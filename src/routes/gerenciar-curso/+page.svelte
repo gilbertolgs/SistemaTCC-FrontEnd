@@ -3,6 +3,8 @@
     import { pageName } from '../stores';
     import Api from '$repository/axiosInstance';
     import { onMount } from 'svelte';
+    import DadosAlert from '$model/DadosAlert';
+    import Modal from '$components/Modal.svelte';
 
     let txtNome: string;
     let cursos: Curso[] = [];
@@ -30,10 +32,12 @@
                 await Api.put('cursos/atualizarCurso', curso);
 
                 cancelarAlteracao();
+                DadosAlert.addAlert('', 'Curso Alterado com sucesso!', 'bg-green-500');
             }
             else{
                 const curso = new Curso(0, txtNome);
                 await Api.post('cursos/criarCurso', curso);
+                DadosAlert.addAlert('', 'Curso Adicionado com sucesso!', 'bg-green-500');
             }
 
             txtNome = '';
@@ -49,6 +53,9 @@
 
     async function deletarCurso(id: number) {
         await Api.delete(`cursos/${id}/deletarCurso`);
+        DadosAlert.addAlert('', 'Curso Deletado com sucesso!', 'bg-green-500');
+
+        toggleModal();
 
         getData();
     }
@@ -64,7 +71,25 @@
             criarCurso();
         }
     }
+
+    function openModal(titulo: string, mensagem: string, opt1: any, opt2: any){
+        dadosModal = {
+            titulo: titulo,
+            mensagem: mensagem,
+            opt1: opt1,
+            opt2: opt2
+        }
+        toggleModal();
+    }
+    //Funções Componentes
+    let toggleModal: () => void;
+    let dadosModal: any;
 </script>
+
+<Modal
+bind:toggleModal={toggleModal}
+dados={dadosModal}
+/>
 
 <svelte:head>
 	<title>{pageName} - Cadastro</title>
@@ -108,7 +133,23 @@
                         </th>
                         <th class="flex border-b text-text-primary">
                             <button class="p-4 bg-content-primary hover:scale-110 transition-all rounded-l-md font-bold hover:brightness-90" on:click={() => {alterarCurso(curso.id, curso.nome)}}>Alterar</button>
-                            <button class="p-4 mr-1 bg-red-500 hover:scale-110 transition-all rounded-r-md font-bold hover:brightness-90" on:click={() => {deletarCurso(curso.id)}}>Excluir</button>
+                            <!-- <button class="p-4 mr-1 bg-red-500 hover:scale-110 transition-all rounded-r-md font-bold hover:brightness-90" on:click={() => {deletarCurso(curso.id)}}>Excluir</button> -->
+                            <button class="p-4 mr-1 bg-red-500 hover:scale-110 transition-all rounded-r-md font-bold hover:brightness-90" on:click={() => {openModal(
+                                'Deletar Curso',
+                                'Tem certeza que deseja excluir esse curso?',
+                                {
+                                    link: null,
+                                    botao: (() => deletarCurso(curso.id)),
+                                    nome: 'Excluir'
+                                },
+                                {
+                                    nome: 'Cancelar'
+                                }
+                                )}}
+                            >
+
+                            Excluir
+                            </button>
                         </th>
                     </tr>
                     {/each}

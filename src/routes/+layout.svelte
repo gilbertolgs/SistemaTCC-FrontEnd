@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Header from '../components/Header.svelte';
+	import Alert from '$components/Alert.svelte';
 	import logo from '../lib/images/logoVazia.png'
 	import './styles.css';
 
@@ -29,6 +30,7 @@
 
 <div class="app">
 	<Header />
+	<Alert />
 
 	<main>
 	{#if connectionErrorValue != 200}

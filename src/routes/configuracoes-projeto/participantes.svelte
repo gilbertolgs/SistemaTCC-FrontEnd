@@ -6,6 +6,7 @@
     import { onMount } from "svelte";
     import { storeLogin } from "../stores";
     import { get } from "svelte/store";
+    import DadosAlert from "$model/DadosAlert";
 
     export let projeto: Projeto;
 
@@ -15,6 +16,7 @@
             nome: ''
         },
     ]
+    pessoas = [];
 
     let convidados = [
         {
@@ -33,7 +35,7 @@
     partipantes = [];
 
     let txtParticipante = '';
-    let mostrarLista = false;
+    let txtMensagem = '';
     let participante: any;
     let cboPapel = 'Aluno';
 
@@ -54,22 +56,17 @@
     onMount(getData);
 
     async function atualizaLista(){
-        if(txtParticipante.length == 3){
+        if (txtParticipante.length < 3){
+            pessoas = [];
+        }
+        else if(txtParticipante.length == 3 || txtParticipante.length > 5){
             const query = {
                 Papel: cboPapel,
                 Nome: txtParticipante
             }
             
             pessoas = await Api.get("usuarios/findUsers", query);
-        }
-        
-        //Fazer filtro
-        if(txtParticipante.length > 0){
-            mostrarLista = true;
-        }
-        else{
-            mostrarLista = false;
-        }
+        }    
     }
 
     async function selecionaParticipante(usuario: any){
@@ -80,7 +77,7 @@
             participante = null;
         }
         txtParticipante = '';
-        mostrarLista = false;
+        atualizaLista();
     }
 
     async function enviarConvite(){
@@ -92,6 +89,9 @@
         await Api.post('convites/enviarConvite', convite);
 
         selecionaParticipante(null);
+        
+        txtMensagem = '';
+        DadosAlert.addAlert('', 'Convite enviado!', 'bg-green-500');
         getData();
     }
 
@@ -112,12 +112,12 @@
             <h1 class="shadow-sm border border-bg-secondary bg-content-primary text-white rounded-xl p-3">{participante.nome}</h1>
             <button on:click={() => (selecionaParticipante(null))} class="absolute material-symbols-outlined hover:scale-110 transition-all">close</button>
             {:else}
-            <select name="" id="" bind:value={cboPapel}>
+            <select class="txtPrimaryComponent w-auto m-3" bind:value={cboPapel}>
                 <option value="Aluno">Aluno</option>
                 <option value="Professor">Professor</option>
             </select>
-            <input type="text" class="border border-bg-secondary focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" bind:value={txtParticipante} on:input={atualizaLista}>
-            {#if mostrarLista}
+            <input type="text" class="txtPrimaryComponent" bind:value={txtParticipante} on:input={atualizaLista}>
+            {#if pessoas.length > 0}
             <ul class="max-h-40 overflow-y-scroll border border-bg-secondary rounded-xl">
                 {#if pessoas}
                 {#each pessoas as pessoa}
@@ -132,7 +132,7 @@
         </div>
         <div>
             <label class="font-bold inline-block pb-2" for="text">Mensagem</label>
-            <textarea name="" id="" cols="30" rows="4" class="focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2 resize-none border border-bg-secondary"></textarea>
+            <textarea bind:value={txtMensagem} cols="30" rows="4" class="txtPrimaryComponent resize-none"></textarea>
         </div>
         <div>
             <input class="btnPrimaryComponent" type="submit" value="Enviar Convite" on:click={enviarConvite}>

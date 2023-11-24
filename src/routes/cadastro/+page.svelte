@@ -43,7 +43,6 @@
                 txtEmail,
                 txtSenha,
                 'Aluno',
-                0,
                 null
             );
             

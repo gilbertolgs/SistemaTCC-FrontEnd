@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { pageName, storeLogin } from "../stores";
+    import { emptyUser, pageName, storeLogin } from "../stores";
     import Cookie from "$model/Cookie";
     import { onMount } from "svelte";
     import { goto } from "$app/navigation";
@@ -9,7 +9,7 @@
         Cookie.removeCookie("email");
         Cookie.removeCookie("token");
 
-        storeLogin.set(null);
+        storeLogin.set(emptyUser);
 
         goto("/login");
     })

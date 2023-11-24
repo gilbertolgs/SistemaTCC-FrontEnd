@@ -9,8 +9,6 @@
 
     async function getData(){
         projetos = await Api.get('projetos/pendente');
-        console.log(projetos);
-        
     }
 
     onMount(getData);

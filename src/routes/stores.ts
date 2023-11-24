@@ -1,3 +1,4 @@
+import type DadosAlert from '$model/DadosAlert';
 import User from '$model/User';
 import { readable, writable, type Writable } from 'svelte/store';
 
@@ -8,6 +9,9 @@ export const connectionError = writable(200);
 
 export const storeConvites = writable([]);
 
-let user = new User(0, 0, "", "", "", "", 0, "");
+export const emptyUser = new User(0, 0, "", "", "", "", "", "");
+let user = emptyUser;
 
 export const storeLogin: Writable<User> = writable(user);
+
+export const storeAlerts: Writable<DadosAlert[]> = writable([]);

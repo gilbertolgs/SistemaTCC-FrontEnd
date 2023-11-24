@@ -4,6 +4,7 @@
     import type Curso from '$model/Curso'
     import Usuario from '$model/Usuario';
     import Api from '$repository/axiosInstance';
+    import DadosAlert from '$model/DadosAlert';
 
     let txtNome: string;
     let txtEmail: string;
@@ -43,12 +44,11 @@
                 txtEmail,
                 txtSenha,
                 txtPapel,
-                0,
                 null
                 );
                 
                 Api.post('usuarios/CriarUsuario', user);
-                alert('Usuario criado com sucesso!');
+                DadosAlert.addAlert('', 'Usuario criado com sucesso!', 'bg-green-500');
         }
     }
 

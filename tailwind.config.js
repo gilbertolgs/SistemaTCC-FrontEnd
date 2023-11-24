@@ -23,7 +23,8 @@ export default {
       },
       animation: {
         'spin-once': 'spin 500ms ease-in-out forwards',
-      }
+        
+      }      
     },
   },
   plugins: [],

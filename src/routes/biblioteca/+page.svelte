@@ -8,9 +8,7 @@
     let projetos: Projeto[] = [];
 
     async function getData(){
-        projetos = await Api.get('projetos', {query : 1});
-        console.log(projetos);
-        
+        projetos = await Api.get('projetos', {query : 1});        
     }
 
     onMount(getData);

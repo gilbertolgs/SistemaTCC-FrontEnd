@@ -1,8 +1,4 @@
 <script lang="ts">
-    import Api from "$repository/axiosInstance";
-    import axios from "axios";
-    import { apiRoute } from "../routes/stores";
-
     let showModal = false;
   
     export function toggleModal() {
@@ -31,30 +27,6 @@
             nome: ''
         }
     }
-
-    let arquivo: any;
-    
-    let file = {
-      "ContentType" : "string",
-      "ContentDisposition" : "string",
-      "Headers" : "object",
-      "Length" : "integer($int64)",
-      "Name" : "string",
-      "FileName" : "string"
-    }
-
-    function enviarImagem(){
-      let formData = new FormData();
-      formData.append('file', arquivo)
-
-      //Api.put(`projetos/${1}/envioImagens`, formData);
-        
-      axios.put(`${apiRoute}projetos/${1}/envioImagens`, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-    }
   </script>
   
   {#if showModal}
@@ -73,10 +45,6 @@
               </div>
               {/each}
             {/if}
-            <div>
-              <input bind:value={arquivo} type="file" id="file-upload" name="filename">
-              <button on:click={enviarImagem} class="btnPrimaryComponent">AA</button>
-            </div>
             <div class="space-y-4">
                 {#if dados.opt1.link}
                 <a href="{dados.opt1.link}" class="p-3 bg-content-primary hover:brightness-90 rounded-full text-white w-full font-semibold">{dados.opt1.nome}</a>
