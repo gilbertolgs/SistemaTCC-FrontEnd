@@ -160,7 +160,7 @@
 	};
 </script>
 
-<header class="bg-bg-primary" id="navBar">
+<header class="bg-base-100" id="navBar">
 	<nav class="mx-auto flex items-center justify-between p-3 lg:px-6" >
 	  <div class="flex lg:flex-1 h-11">
 
@@ -203,7 +203,7 @@
 	  </div>
 	</nav>
 	<div class="lg:flex" role="dialog" aria-modal="true">
-	  <div class="fixed inset-y-0 left-0 z-10 overflow-x-hidden bg-bg-primary p-6 pt-2 pl-2 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 {sideMenuActive} transition-all delay-70 ease-linear">
+	  <div class="fixed inset-y-0 left-0 z-10 overflow-x-hidden bg-base-100 p-6 pt-2 pl-2 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 {sideMenuActive} transition-all delay-70 ease-linear">
 		<div class="flex items-center justify-between mb-2">
 		  <a href="biblioteca" class="-m-1.5 p-1.5">
 			<span class="sr-only">Your Company</span>
@@ -220,7 +220,7 @@
 			<ul class="flex-1">
 				{#each diretorios as diretorio}
 				<li class="space-y-2 py-3 w-full m-1 group">
-					<a href="{diretorio.link}" class="-mx-3 hover:brightness-90 bg-bg-primary rounded-lg px-3 py-2 text-base hover:shadow-2xl font-semibold leading-7 text-text-primary flex items-center">
+					<a href="{diretorio.link}" class="-mx-3 hover:brightness-90 bg-base-100 rounded-lg px-3 py-2 text-base hover:shadow-2xl font-semibold leading-7 text-text-primary flex items-center">
 						<span class="material-symbols-outlined mr-3 group-hover:scale-110">
 							{diretorio.icon}
 						</span>
@@ -232,8 +232,18 @@
 				{/each}
 			</ul>
 			<ul class="justify-end">
+				<!-- TODO: REVER ESSA CHECKBOX
+				<label class="swap swap-rotate">
+				<input type="checkbox" class="theme-controller" value="synthwave" />
+				<span class="swap-off material-symbols-outlined mr-3 text-yellow-500">
+					light_mode
+				</span>
+				<span class="swap-on material-symbols-outlined mr-3 text-blue-500">
+					dark_mode
+				</span>
+				</label> -->
 				<li class="space-y-2 py-3 w-full m-1 group">
-					<button class="-mx-3 rounded-lg px-3 py-2 text-base hover:brightness-90 bg-bg-primary hover:shadow-2xl font-semibold leading-7 text-text-primary flex items-center w-full hover:underline" on:click={changeTheme}>
+					<button class="-mx-3 rounded-lg px-3 py-2 text-base hover:brightness-90 bg-base-100 hover:shadow-2xl font-semibold leading-7 text-text-primary flex items-center w-full hover:underline" on:click={changeTheme}>
 						{#if colorTheme=='dark'}
 						<span class="material-symbols-outlined mr-3 text-blue-500 transition-all duration-150 animate-spin-once group-hover:scale-110">
 							dark_mode
@@ -250,7 +260,7 @@
 				</li>
 				{#if currentUser?.id != 0}
 				<li class="space-y-2 py-3 w-full m-1 group">
-					<a href="logout" class="-mx-3 rounded-lg px-3 py-2 text-base hover:brightness-90 bg-bg-primary hover:shadow-2xl font-semibold leading-7 text-text-primary flex items-center">
+					<a href="logout" class="-mx-3 rounded-lg px-3 py-2 text-base hover:brightness-90 bg-base-100 hover:shadow-2xl font-semibold leading-7 text-text-primary flex items-center">
 						<span class="material-symbols-outlined mr-3 text-red-500 group-hover:scale-110">
 							logout
 						</span>

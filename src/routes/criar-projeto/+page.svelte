@@ -80,28 +80,28 @@
 
 <div class="flex items-center text-text-primary">
     <div class="h-max mx-auto flex flex-col items-center">
-        <div class="flex items-center h-max mx-auto w-full text-text-primary bg-bg-primary shadow-xl p-10 gap-4 text-sm rounded-xl mb-2 justify-center">
+        <div class="flex items-center h-max mx-auto w-full text-text-primary bg-base-100 shadow-xl p-10 gap-4 text-sm rounded-xl mb-2 justify-center">
             <h1 class="font-bold">Criar Projeto</h1>
         </div>
-        <div class="bg-bg-primary shadow-xl p-10 flex flex-col gap-4 text-sm rounded-xl">
+        <div class="bg-base-100 shadow-xl p-10 flex flex-col gap-4 text-sm rounded-xl">
             <div>
                 <label class="font-bold inline-block pb-2" for="text">Nome</label>
-                <input bind:value={nome} required class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary" type="text" name="text">
+                <input bind:value={nome} required class="input input-bordered px-5 py-2" type="text" name="text">
             </div>
             <div>
                 <label class="font-bold inline-block pb-2" for="text">Descrição</label>
-                <textarea name="" bind:value={descricao} id="" cols="30" rows="4" class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary resize-none"></textarea>
+                <textarea name="" bind:value={descricao} id="" cols="30" rows="4" class="textarea textarea-bordered px-5 py-2 resize-none"></textarea>
             </div>
             <div>
                 <label class="font-bold inline-block pb-2" for="text">Curso</label>
-                <select bind:value={curso} name="" id="" class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary">
+                <select bind:value={curso} name="" id="" class="select select-bordered px-5 py-2">
                     {#each cursos as curso}
                         <option value="{curso.id}">{curso.nome}</option>
                     {/each}
                 </select>
             </div>
             <div>
-                <input class="btnPrimaryComponent" type="submit" value="Criar Projeto" on:click={criarProjeto}>
+                <input class="btn btn-primary" type="submit" value="Criar Projeto" on:click={criarProjeto}>
             </div>
         </div>        
     </div>

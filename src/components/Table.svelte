@@ -24,7 +24,7 @@
 	</thead>
 	<tbody>
 		{#each Object.values(dados) as linha}
-			<tr class="bg-bg-primary hover:brightness-90">
+			<tr class="bg-base-100 hover:brightness-90">
 				{#each Object.values(linha) as celula}
 					<td class="border-b p-4 pl-8 text-text-secondary">{celula}</td>
 				{/each}

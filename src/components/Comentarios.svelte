@@ -90,28 +90,28 @@
 
 </script>
 
-<div class="flex flex-col my-2 border border-bg-secondary p-3 rounded-lg">
+<div class="flex flex-col my-2 border border-base-20 p-3 rounded-lg">
     <h1>Comentarios:</h1>
-    <textarea name="" bind:value={campoComentario} id="" cols="30" rows="4" class="txtPrimaryComponent resize-none border-2"></textarea>
-    <button on:click={comentar} class="p-2 bg-content-primary hover:scale-110 transition-all rounded-md font-bold hover:brightness-90 flex items-center w-20 mt-2 ml-auto">Comentar</button>
+    <textarea name="" bind:value={campoComentario} id="" cols="30" rows="4" class="textarea textarea-bordered resize-none border-2"></textarea>
+    <button on:click={comentar} class="btn btn-primary w-20 mt-2 ml-auto">Comentar</button>
 </div>
 <ul class="mt-5">
     {#each comentarios as comentario}
-    <li class="flex flex-col mb-3 border border-bg-secondary p-3 rounded-lg relative">
+    <li class="flex flex-col mb-3 border border-base-20 p-3 rounded-lg relative">
         <a href="usuario?id={comentario.idUsuario}" class="text-content-primary underline hover:brightness-90">
             {comentario.usuario.nome}
         </a>
         {#if editandoComentario == comentario.id}
         <div class="grid grid-flow-col">
-            <textarea bind:value={txtEditandoComentarioConteudo} placeholder="{comentario.conteudo}" class="col-span-5 txtPrimaryComponent resize-none"/>
+            <textarea bind:value={txtEditandoComentarioConteudo} placeholder="{comentario.conteudo}" class="textarea textarea-bordered col-span-5 resize-none"/>
             <div class="ml-auto mb-auto">
-                <button on:click={() => {salvarComentario(comentario.id)}} class="w-full ml-auto mb-auto hover:brightness-90 bg-bg-primary rounded-xl p-3 pb-2 flex justify-center bg-green-500">
+                <button on:click={() => {salvarComentario(comentario.id)}} class="w-full ml-auto mb-auto p-3 pb-2 flex justify-center btn btn-success">
                     <span class="material-symbols-outlined">
                         done
                     </span>
                     Salvar
                 </button>
-                <button on:click={() => {editarComentario(comentario.id)}} class="w-full ml-auto mb-auto hover:brightness-90 bg-bg-primary rounded-xl p-3 pb-2 flex justify-center bg-red-500">
+                <button on:click={() => {editarComentario(comentario.id)}} class="w-full ml-auto mb-auto p-3 pb-2 flex justify-center btn btn-error">
                     <span class="material-symbols-outlined">
                         close
                     </span>

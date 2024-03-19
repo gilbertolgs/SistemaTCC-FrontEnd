@@ -96,22 +96,18 @@ dados={dadosModal}
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
+<h1 class="bg-base-100 text-base-content p-5 rounded-xl w-full text-center m-3">
+    Cadastrar Curso
+</h1>     
 <div class="flex items-center text-text-primary">
-    <div class="h-max mx-auto flex flex-col items-center">
-        <div class="bg-bg-primary shadow-xl p-10 flex flex-col gap-4 text-sm rounded-xl w-full my-2 items-center">
-            <div>
-                <h1>
-                    Cadastrar Curso
-                </h1>
-            </div>
-        </div>        
-        <div class="bg-bg-primary shadow-xl p-10 flex flex-col gap-4 text-sm rounded-xl">
+    <div class="h-max mx-auto flex flex-col items-center">        
+        <div class="bg-base-100 shadow-xl p-10 flex flex-col gap-4 text-sm rounded-xl">
             <div>
                 <label class="font-bold inline-block pb-2" for="text">Nome</label>
-                <input bind:value={txtNome} on:keypress={criarCursoKeyPress} required class="txtPrimaryComponent" type="text" name="text" placeholder="exemplo">
+                <input bind:value={txtNome} on:keypress={criarCursoKeyPress} required class="input input-bordered" type="text" name="text" placeholder="exemplo">
             </div>
             <div>
-                <input class="btnPrimaryComponent" type="submit" value="{textoBotao}" on:click={criarCurso}>
+                <input class="btn btn-primary" type="submit" value="{textoBotao}" on:click={criarCurso}>
                 {#if alterando}
                 <input class="w-full mt-2 py-2 rounded-md text-white font-bold cursor-pointer bg-red-500 hover:brightness-90" type="submit" value="Cancelar" on:click={cancelarAlteracao}>
                 {/if}

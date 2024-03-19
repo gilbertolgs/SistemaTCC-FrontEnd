@@ -72,14 +72,14 @@
     <div class="h-max mx-auto flex flex-col items-center">
         <img class="h-[100px] w-auto" src="{logo}" alt="">
         <h1 class="text-xl font-bold text-center pb-10">Acesse com seu e-mail instrucional.</h1>
-        <div class="bg-bg-primary shadow-xl p-10 flex flex-col gap-4 text-sm">
+        <div class="bg-base-100 shadow-xl p-10 flex flex-col gap-4 text-sm">
             <div>
                 <label class="font-bold inline-block pb-2" for="email">Email</label>
-                <input class="txtPrimaryComponent" type="email" name="email" placeholder="exemplo@aedb.br" bind:value={email} on:keypress={fazerLoginKeyPress}>
+                <input class="input input-bordered" type="email" name="email" placeholder="exemplo@aedb.br" bind:value={email} on:keypress={fazerLoginKeyPress}>
             </div>
             <div>
                 <label class="font-bold inline-block pb-2" for="password">Senha</label>
-                <input class="txtPrimaryComponent" type="password" name="password" placeholder="******" bind:value={senha} on:keypress={fazerLoginKeyPress}>
+                <input class="input input-bordered" type="password" name="password" placeholder="******" bind:value={senha} on:keypress={fazerLoginKeyPress}>
             </div>
             <div class="flex">
                 <div class="w-1/2">
@@ -91,7 +91,7 @@
                 </div>
             </div>
             <div>
-                <input class="btnPrimaryComponent" type="submit" value="Login" on:click={fazerLogin}>
+                <input class="btn btn-primary" type="submit" value="Login" on:click={fazerLogin}>
             </div>
             <div>
                 <a href="cadastro" class="font-bold text-content-primary">Criar Conta</a>

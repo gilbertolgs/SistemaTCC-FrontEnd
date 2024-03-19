@@ -105,24 +105,24 @@
 </script>
 
 <div class="h-max mx-auto flex flex-col items-center">
-    <div class="bg-bg-primary shadow-xl p-10 flex flex-col gap-4 text-sm rounded-xl">
+    <div class="bg-base-100 shadow-xl p-10 flex flex-col gap-4 text-sm rounded-xl">
         <div>
             <label class="font-bold inline-block pb-2" for="text">Pessoa</label>
             {#if participante}
-            <h1 class="shadow-sm border border-bg-secondary bg-content-primary text-white rounded-xl p-3">{participante.nome}</h1>
+            <h1 class="shadow-sm border border-base-20 bg-content-primary text-white rounded-xl p-3">{participante.nome}</h1>
             <button on:click={() => (selecionaParticipante(null))} class="absolute material-symbols-outlined hover:scale-110 transition-all">close</button>
             {:else}
-            <select class="txtPrimaryComponent w-auto m-3" bind:value={cboPapel}>
+            <select class="select select-bordered w-auto m-3" bind:value={cboPapel}>
                 <option value="Aluno">Aluno</option>
                 <option value="Professor">Professor</option>
             </select>
-            <input type="text" class="txtPrimaryComponent" bind:value={txtParticipante} on:input={atualizaLista}>
+            <input type="text" class="input input-bordered" bind:value={txtParticipante} on:input={atualizaLista}>
             {#if pessoas.length > 0}
-            <ul class="max-h-40 overflow-y-scroll border border-bg-secondary rounded-xl">
+            <ul class="max-h-40 overflow-y-scroll border border-base-20 rounded-xl">
                 {#if pessoas}
                 {#each pessoas as pessoa}
                 <li>
-                    <button class="btnPrimaryComponent" on:click={() => (selecionaParticipante(pessoa))}>{pessoa.nome} | Convidar Participante</button>
+                    <button class="btn btn-primary" on:click={() => (selecionaParticipante(pessoa))}>{pessoa.nome} | Convidar Participante</button>
                 </li>
                 {/each}
                 {/if}
@@ -132,14 +132,14 @@
         </div>
         <div>
             <label class="font-bold inline-block pb-2" for="text">Mensagem</label>
-            <textarea bind:value={txtMensagem} cols="30" rows="4" class="txtPrimaryComponent resize-none"></textarea>
+            <textarea bind:value={txtMensagem} cols="30" rows="4" class="input input-bordered resize-none"></textarea>
         </div>
         <div>
-            <input class="btnPrimaryComponent" type="submit" value="Enviar Convite" on:click={enviarConvite}>
+            <input class="btn btn-primary" type="submit" value="Enviar Convite" on:click={enviarConvite}>
         </div>
     </div>
     {#if convidados.length > 0}
-    <div class="w-full mt-2 bg-bg-primary shadow-xl p-5 flex flex-col gap-4 text-sm rounded-xl">
+    <div class="w-full mt-2 bg-base-100 shadow-xl p-5 flex flex-col gap-4 text-sm rounded-xl">
         <div class="tableHolderComponent w-full my-0">
             <table class="tableComponent">
                 <thead class="text-text-primary">
@@ -164,7 +164,7 @@
     </div>
     {/if}
     {#if partipantes.length > 0}
-    <div class="w-full mt-2 bg-bg-primary shadow-xl p-5 flex flex-col gap-4 text-sm rounded-xl">
+    <div class="w-full mt-2 bg-base-100 shadow-xl p-5 flex flex-col gap-4 text-sm rounded-xl">
         <div class="tableHolderComponent w-full my-0">
             <table class="tableComponent">
                 <thead class="text-text-primary">
@@ -180,7 +180,7 @@
                         </th>
                         {#if currentUser?.id == participa.id}
                         <th>
-                            <button class="btnPrimaryComponent p-3" on:click={deixarProjeto}>
+                            <button class="btn btn-primary p-3" on:click={deixarProjeto}>
                                 Deixar Projeto
                             </button>
                         </th>

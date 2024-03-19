@@ -109,19 +109,19 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<div class="flex items-center h-max mx-auto flex-col w-full text-text-primary bg-bg-primary shadow-xl p-10 gap-4 text-sm rounded-xl mb-2">
+<div class="flex items-center h-max mx-auto flex-col w-full text-text-primary bg-base-100 shadow-xl p-10 gap-4 text-sm rounded-xl mb-2">
     <div class="flex w-full items-center">
         <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="imagem de perfil" class="h-20 w-20 rounded-lg border border-text-primary m-3">
         <div class="flex flex-col text-text-secondary font-bold">
             {#if editandoPerfil}
-            Nome de Usuario: <input type="text" bind:value={txtNome} placeholder="{usuario.nome}" class="txtPrimaryComponent">
-            E-mail: <input type="text" bind:value={txtEmail} placeholder="{usuario.email}" disabled class="txtPrimaryComponent border border-text-primary">
-            Curso:  <select name="" id="" bind:value={lstCurso} class="focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary">
+            Nome de Usuario: <input type="text" bind:value={txtNome} placeholder="{usuario.nome}" class="input input-bordered">
+            E-mail: <input type="text" bind:value={txtEmail} placeholder="{usuario.email}" disabled class="input input-bordered border border-text-primary">
+            Curso:  <select name="" id="" bind:value={lstCurso} class="input input-bordered px-5 py-2">
                 {#each cursos as curso}
                     <option value="{curso.id}">{curso.nome}</option>
                 {/each}
             </select>
-            Papel: <input type="text" bind:value={usuario.papel} disabled class="txtPrimaryComponent border border-text-primary">
+            Papel: <input type="text" bind:value={usuario.papel} disabled class="input input-bordered border border-text-primary">
             {:else}
             Nome de Usuario: {usuario.nome} <br>
             E-mail: {usuario.email} <br>
@@ -131,13 +131,13 @@
         </div>
         {#if editandoPerfil}
         <div class="ml-auto mb-auto flex flex-col gap-1">
-            <button on:click={salvarPerfil} class="btnPrimaryComponent flex justify-center rounded-xl p-3 bg-green-500">
+            <button on:click={salvarPerfil} class="btn btn-success p-3">
                 <span class="material-symbols-outlined">
                     done
                 </span>
                 Salvar
             </button>
-            <button on:click={editarPerfil} class="btnPrimaryComponent flex justify-center rounded-xl p-3 bg-red-500">
+            <button on:click={editarPerfil} class="btn btn-error p-3">
                 <span class="material-symbols-outlined">
                     close
                 </span>
@@ -146,7 +146,7 @@
         </div>
         {:else}
         {#if currentUser?.id == idUsuario}
-        <button on:click={editarPerfil} class="ml-auto mb-auto hover:brightness-90 bg-bg-primary rounded-xl p-3 pb-2 flex justify-center">
+        <button on:click={editarPerfil} class="ml-auto mb-auto hover:brightness-90 bg-base-100 rounded-xl p-3 pb-2 flex justify-center">
             <span class="material-symbols-outlined">
                 edit
             </span>
@@ -156,7 +156,7 @@
         {/if}
     </div>        
 </div>
-<div class="flex items-center h-max mx-auto flex-col w-full text-text-primary bg-bg-primary shadow-xl p-5 gap-2 text-sm rounded-xl divide-y divide-bg-secondary">
+<div class="flex items-center h-max mx-auto flex-col w-full text-text-primary bg-base-100 shadow-xl p-5 gap-2 text-sm rounded-xl divide-y divide-base-20">
     <div class="text-text-secondary font-bold text-xl">Participante de Projetos:</div>
     <div class="w-full"></div>
     <div class="cardHolderComponent mt-4">

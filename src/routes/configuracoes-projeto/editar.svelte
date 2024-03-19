@@ -91,7 +91,7 @@ bind:toggleModal={toggleModal}
 dados={dadosModal}
 />
 <div class="h-max mx-auto flex flex-col items-center w-full">
-    <div class="w-full mt-2 bg-bg-primary shadow-xl p-5 gap-4 text-sm rounded-xl grid grid-flow-col">
+    <div class="w-full mt-2 bg-base-100 shadow-xl p-5 gap-4 text-sm rounded-xl grid grid-flow-col">
         <div>
             <!-- {#if projeto.imagem}
             <h2>{projeto.imagem}</h2>
@@ -106,16 +106,16 @@ dados={dadosModal}
             {/if} -->
             {#if editando}
             <div class="grid gap-2 w-2/4 my-2">
-                <input bind:value={txtProjeto.nome} required class="txtPrimaryComponent" type="text" name="text" placeholder="{projeto.nome}">
-                <textarea bind:value={txtProjeto.descricao} cols="30" rows="4" class="txtPrimaryComponent resize-none" placeholder="{projeto.descricao}"/>
+                <input bind:value={txtProjeto.nome} required class="input input-bordered" type="text" name="text" placeholder="{projeto.nome}">
+                <textarea bind:value={txtProjeto.descricao} cols="30" rows="4" class="input input-bordered resize-none" placeholder="{projeto.descricao}"/>
 
-                <button on:click={atualizarProjeto} class="btnPrimaryComponent bg-green-500 flex text-center justify-center">
+                <button on:click={atualizarProjeto} class="btn btn-success">
                     <span class="material-symbols-outlined mr-2">
                         done
                     </span>
                     Salvar
                 </button>
-                <button on:click={editarProjeto} class="btnPrimaryComponent bg-red-500 flex text-center justify-center">
+                <button on:click={editarProjeto} class="btn btn-error">
                     <span class="material-symbols-outlined mr-2">
                         close
                     </span>
@@ -145,14 +145,14 @@ dados={dadosModal}
                     nome: 'Cancelar'
                 }
                 )}}
-            class="btnPrimaryComponent flex text-center justify-center my-5">
+            class="btn btn-primary flex text-center justify-center my-5">
             <span class="material-symbols-outlined mr-2">
                 done
             </span>
             Tornar Publico
         </button>
         {:else}
-        <button on:click={editarProjeto} class="btnPrimaryComponent flex text-center justify-center">
+        <button on:click={editarProjeto} class="btn btn-primary flex text-center justify-center">
             <span class="material-symbols-outlined mr-2">
                 edit
             </span>
@@ -170,7 +170,7 @@ dados={dadosModal}
                 nome: 'Cancelar'
             }
         )}}
-        class="btnPrimaryComponent flex text-center justify-center">
+        class="btn btn-primary flex text-center justify-center">
             <span class="material-symbols-outlined mr-2">
                 close
             </span>
@@ -188,7 +188,7 @@ dados={dadosModal}
                 nome: 'Cancelar'
             }
         )}}
-        class="btnPrimaryComponent flex text-center justify-center">
+        class="btn btn-primary grid grid-flow-col">
             <span class="material-symbols-outlined mr-2">
                 done
             </span>

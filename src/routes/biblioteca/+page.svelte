@@ -19,7 +19,7 @@
 </svelte:head>
 
 <div class="flex items-center flex-col">
-    <h1>
+    <h1 class="bg-base-100 text-base-content p-5 rounded-xl w-full text-center">
         Biblioteca de Trabalhos de Conclusão de Curso
     </h1>
     <div class="cardHolderComponent">

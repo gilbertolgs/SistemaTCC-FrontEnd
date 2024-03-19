@@ -8,7 +8,7 @@
     let projetos: Projeto[] = [];
 
     async function getData(){
-        projetos = await Api.get('projetos/pendente');
+        projetos = await Api.get('projetos');
     }
 
     onMount(getData);
@@ -20,11 +20,9 @@
 </svelte:head>
 
 <div class="flex items-center flex-col">
-    <div class="flex items-center h-max mx-auto w-full text-text-primary bg-bg-primary shadow-xl p-10 gap-4 text-sm rounded-xl mb-2 justify-between">
-        <h1>
-            Projetos Pendentes
-        </h1>
-    </div>
+    <h1 class="bg-base-100 text-base-content p-5 rounded-xl w-full text-center">
+        Projetos Pendentes
+    </h1>
     <div class="cardHolderComponent">
         {#each projetos as projeto}
             <Card

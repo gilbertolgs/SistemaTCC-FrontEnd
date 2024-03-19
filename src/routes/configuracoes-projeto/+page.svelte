@@ -65,9 +65,9 @@
 </svelte:head>
 
 <div class="flex flex-col items-center text-text-primary">
-    <div class="grid grid-flow-col mx-auto w-[50%] bg-bg-primary shadow-xl gap-1 rounded-xl mb-2">
+    <div class="grid grid-flow-col mx-auto w-[50%] bg-base-100 shadow-xl gap-1 rounded-xl mb-2">
         {#each rotas as rota}
-            <button class="h-full btnPrimaryComponent" on:click={() => (togglePagina(rota))}>{rota}</button>
+            <button class="h-full btn btn-primary" on:click={() => (togglePagina(rota))}>{rota}</button>
         {/each}
     </div>
     {#if paginaAtual == 'Editar'}

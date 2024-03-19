@@ -2,6 +2,9 @@
 export default {
   mode: "jit",
   content: ["./src/**/*.{html,ts,svelte}"],
+  daisyui: {
+    themes: ["light", "dark", "cupcake"],
+  },
   theme: {
     extend: {
       colors: {
@@ -27,6 +30,6 @@ export default {
       }      
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 }
 

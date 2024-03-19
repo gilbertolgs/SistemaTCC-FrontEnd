@@ -68,7 +68,7 @@ bind:toggleModal={toggleModal}
 dados={dadosModal}
 />
 <div class="flex items-center h-max mx-auto flex-col w-full text-text-primary">
-        <div class="bg-bg-primary shadow-xl p-10 flex flex-col gap-4 text-sm rounded-xl w-full divide-y divide-bg-bg-secondary">
+        <div class="bg-base-100 shadow-xl p-10 flex flex-col gap-4 text-sm rounded-xl w-full divide-y divide-bg-base-200">
             <div class="flex flex-col items-center">
                 <div class="flex w-full justify-center">
                     <h1 class="text-text-secondary font-bold inline-block pb-3 flex-1">{projeto.nome}</h1>                    

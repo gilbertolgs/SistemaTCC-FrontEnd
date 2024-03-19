@@ -53,7 +53,7 @@
 	--color-text-1: rgb(220, 220, 220);
 	--color-text-2: rgb(100, 100, 100);
 	--color-bg-0: rgb(70, 70, 80);
-	--color-bg-1: rgb(150, 150, 150);
+	--color-bg-1: rgb(10, 10, 10);
 	--color-bg-2: rgb(150, 150, 150);
 	--color-content-0: rgb(153, 102, 255);
 	--color-content-1: rgb(255, 255, 255);
@@ -78,12 +78,7 @@ body {
 	background-attachment: fixed;
 	background-color: var(--color-bg-1);
 	background-size: 100vw 100vh;
-	background-image: radial-gradient(
-			50% 50% at 50% 50%,
-			rgba(230, 230, 250, 0.75) 0%,
-			rgba(200, 200, 200, 0) 100%
-			),
-			linear-gradient(180deg, var(--color-bg-0) 0%, var(--color-bg-1) 15%, var(--color-bg-2) 50%);
+	
 		}
 		
 		a:hover {
@@ -99,7 +94,7 @@ body {
 		@apply bg-bg-primary odd:brightness-110 hover:brightness-90;
 	}
 	.cardHolderComponent {
-		@apply grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] shadow-sm my-8 relative rounded-xl w-full bg-bg-secondary;
+		@apply grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] shadow-sm my-8 relative rounded-xl w-full bg-base-300;
 	}
 	.tableHolderComponent {
 		@apply shadow-sm my-8 relative rounded-xl overflow-auto bg-bg-primary w-[90%];
@@ -109,12 +104,6 @@ body {
 	}
 	.openDropDownComponent {
 		@apply py-5 overflow-visible;
-	}
-	.btnPrimaryComponent {
-		@apply w-full py-2 rounded-md text-white font-bold cursor-pointer bg-content-primary hover:brightness-90;
-	}
-	.txtPrimaryComponent {
-		@apply focus:outline-text-primary rounded-md w-full shadow-sm px-5 py-2 bg-bg-secondary placeholder-text-tertiary;
 	}
 }
 

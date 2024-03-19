@@ -40,7 +40,7 @@
 	  {/if}
 	</main>
 
-	<footer class="bg-bg-primary">
+	<footer class="bg-base-100">
 		<img class="h-[40px] w-auto" src="{logo}" alt="">
 	</footer>
 </div>
