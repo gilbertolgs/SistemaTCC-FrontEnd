@@ -105,9 +105,9 @@ dados={dadosModal}
             </div>
             {/if} -->
             {#if editando}
-            <div class="grid gap-2 w-2/4 my-2">
+            <div class="grid gap-2 my-2">
                 <input bind:value={txtProjeto.nome} required class="input input-bordered" type="text" name="text" placeholder="{projeto.nome}">
-                <textarea bind:value={txtProjeto.descricao} cols="30" rows="4" class="input input-bordered resize-none" placeholder="{projeto.descricao}"/>
+                <textarea bind:value={txtProjeto.descricao} cols="30" rows="10" class="input input-bordered resize-none h-full" placeholder="{projeto.descricao}"/>
 
                 <button on:click={atualizarProjeto} class="btn btn-success">
                     <span class="material-symbols-outlined mr-2">

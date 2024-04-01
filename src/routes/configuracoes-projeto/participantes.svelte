@@ -104,35 +104,33 @@
     }
 </script>
 
-<div class="h-max mx-auto flex flex-col items-center">
-    <div class="bg-base-100 shadow-xl p-10 flex flex-col gap-4 text-sm rounded-xl">
-        <div>
+<div class="h-max mx-auto flex flex-col items-center w-full">
+    <div class="bg-base-100 shadow-xl p-10 flex flex-col gap-4 text-sm rounded-xl lg:w-1/2 w-full">
+        <div class="flex flex-col">
             <label class="font-bold inline-block pb-2" for="text">Pessoa</label>
             {#if participante}
-            <h1 class="shadow-sm border border-base-20 bg-content-primary text-white rounded-xl p-3">{participante.nome}</h1>
-            <button on:click={() => (selecionaParticipante(null))} class="absolute material-symbols-outlined hover:scale-110 transition-all">close</button>
+            <div class="shadow-sm border border-base-20 bg-content-primary text-white rounded-xl p-3 flex flex-row">
+                <div class="my-auto">{participante.nome}</div>
+                <button on:click={() => (selecionaParticipante(null))} class="material-symbols-outlined hover:scale-110 transition-all my-auto ml-auto">close</button>
+            </div>
             {:else}
-            <select class="select select-bordered w-auto m-3" bind:value={cboPapel}>
+            <select class="select select-bordered w-auto mb-3" bind:value={cboPapel}>
                 <option value="Aluno">Aluno</option>
                 <option value="Professor">Professor</option>
             </select>
-            <input type="text" class="input input-bordered" bind:value={txtParticipante} on:input={atualizaLista}>
+            <input type="text" class="input input-bordered" placeholder="Nome" bind:value={txtParticipante} on:input={atualizaLista}>
+            {/if}
             {#if pessoas.length > 0}
             <ul class="max-h-40 overflow-y-scroll border border-base-20 rounded-xl">
                 {#if pessoas}
                 {#each pessoas as pessoa}
                 <li>
-                    <button class="btn btn-primary" on:click={() => (selecionaParticipante(pessoa))}>{pessoa.nome} | Convidar Participante</button>
+                    <button class="btn btn-primary w-full" on:click={() => (selecionaParticipante(pessoa))}>{pessoa.nome} | Convidar Participante</button>
                 </li>
                 {/each}
                 {/if}
             </ul>
             {/if}
-            {/if}
-        </div>
-        <div>
-            <label class="font-bold inline-block pb-2" for="text">Mensagem</label>
-            <textarea bind:value={txtMensagem} cols="30" rows="4" class="input input-bordered resize-none"></textarea>
         </div>
         <div>
             <input class="btn btn-primary" type="submit" value="Enviar Convite" on:click={enviarConvite}>
@@ -164,7 +162,7 @@
     </div>
     {/if}
     {#if partipantes.length > 0}
-    <div class="w-full mt-2 bg-base-100 shadow-xl p-5 flex flex-col gap-4 text-sm rounded-xl">
+    <div class="lg:w-1/3 w-full mt-2 bg-base-100 shadow-xl p-5 flex flex-col gap-4 text-sm rounded-xl">
         <div class="tableHolderComponent w-full my-0">
             <table class="tableComponent">
                 <thead class="text-text-primary">

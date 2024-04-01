@@ -84,21 +84,21 @@
             <h1 class="font-bold">Criar Projeto</h1>
         </div>
         <div class="bg-base-100 shadow-xl p-10 flex flex-col gap-4 text-sm rounded-xl">
-            <div>
-                <label class="font-bold inline-block pb-2" for="text">Nome</label>
+            <div class="flex flex-col">
+                <label class="font-bold pb-2" for="text">Nome</label>
                 <input bind:value={nome} required class="input input-bordered px-5 py-2" type="text" name="text">
             </div>
-            <div>
-                <label class="font-bold inline-block pb-2" for="text">Descrição</label>
-                <textarea name="" bind:value={descricao} id="" cols="30" rows="4" class="textarea textarea-bordered px-5 py-2 resize-none"></textarea>
-            </div>
-            <div>
-                <label class="font-bold inline-block pb-2" for="text">Curso</label>
+            <div class="flex flex-col">
+                <label class="font-bold pb-2" for="text">Curso</label>
                 <select bind:value={curso} name="" id="" class="select select-bordered px-5 py-2">
                     {#each cursos as curso}
                         <option value="{curso.id}">{curso.nome}</option>
                     {/each}
                 </select>
+            </div>
+            <div class="flex flex-col">
+                <label class="font-bold pb-2" for="text">Descrição</label>
+                <textarea name="" bind:value={descricao} id="" cols="30" rows="4" class="textarea textarea-bordered px-5 py-2 resize-none"></textarea>
             </div>
             <div>
                 <input class="btn btn-primary" type="submit" value="Criar Projeto" on:click={criarProjeto}>

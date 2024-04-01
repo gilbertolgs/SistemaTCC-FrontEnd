@@ -68,17 +68,17 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<div class="flex items-center text-text-primary">
-    <div class="h-max mx-auto flex flex-col items-center">
+<div class="flex items-center text-text-primary w-full">
+    <div class="h-max mx-auto flex flex-col items-center lg:w-1/2 w-full">
         <img class="h-[100px] w-auto" src="{logo}" alt="">
         <h1 class="text-xl font-bold text-center pb-10">Acesse com seu e-mail instrucional.</h1>
         <div class="bg-base-100 shadow-xl p-10 flex flex-col gap-4 text-sm">
-            <div>
-                <label class="font-bold inline-block pb-2" for="email">Email</label>
+            <div class="flex flex-col">
+                <label class="font-bold pb-2" for="email">Email</label>
                 <input class="input input-bordered" type="email" name="email" placeholder="exemplo@aedb.br" bind:value={email} on:keypress={fazerLoginKeyPress}>
             </div>
-            <div>
-                <label class="font-bold inline-block pb-2" for="password">Senha</label>
+            <div class="flex flex-col">
+                <label class="font-bold pb-2" for="password">Senha</label>
                 <input class="input input-bordered" type="password" name="password" placeholder="******" bind:value={senha} on:keypress={fazerLoginKeyPress}>
             </div>
             <div class="flex">
